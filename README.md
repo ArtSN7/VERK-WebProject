@@ -1,6 +1,7 @@
 # VERK-WebProject
 TODO-web project made by pupils from 1514
 
+ссылка на фигму:  https://www.figma.com/file/umZZyeskGR7qpCtUu9VQzJ/verk?node-id=12%3A4&t=GPloR0gEQzELE51k-0
 
 И так, господа тимейты. Мне не нравится ваше отношение делать все через одно место. И тип вот это не канает:
 
