@@ -31,7 +31,7 @@ https://github.com/YL-bot/flask-alch-2
 
 НАПИШИТЕ login.html, registration.html, base.html( тип в коде должны быть прописаны кнопки и их переадресация, дам пример, сделайте 2 пароля тип чтобы два раза вводил для проверки )
 
-вот пример кода с кнопкой и переадрес. ( <a class="btn btn-success" href="/login">Войти</a> ):
+вот пример кода с кнопкой и переадрес. (  class="btn btn-success" href="/login">Войти ):
 
 ![image](https://user-images.githubusercontent.com/102421671/222967685-63f1be86-0cff-4bf1-b660-451e9fa11d95.png)
 
