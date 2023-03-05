@@ -29,16 +29,39 @@ https://github.com/YL-bot/flask-alch-2
 
 ЗАДАНИЕ ДЛЯ ФРОНТОВ:
 
-НАПИШИТЕ login.html, registration.html, base.html( как верхняя штука для всего, где название, кнопки для перехода между окнами, в случае со входом и регом - кнопки входа и рега ) 
+НАПИШИТЕ login.html, registration.html, base.html( тип в коде должны быть прописаны кнопки и их переадресация, дам пример, сделайте 2 пароля тип чтобы два раза вводил для проверки )
+
+вот пример кода с кнопкой и переадрес. ( <a class="btn btn-success" href="/login">Войти</a> ):
+
+![image](https://user-images.githubusercontent.com/102421671/222967685-63f1be86-0cff-4bf1-b660-451e9fa11d95.png)
+
 
 пример:
 
-![image](https://user-images.githubusercontent.com/102421671/222897660-2a7a4013-a9f5-4698-82fe-79c2eb8772c7.png)
+![image](https://user-images.githubusercontent.com/102421671/222967599-86834f74-2e24-4d12-83c7-2a8032e9e882.png)
 
+![image](https://user-images.githubusercontent.com/102421671/222967767-2fbd1b20-3ef0-4b9c-9aa8-64b39d119d5e.png)
 
-![image](https://user-images.githubusercontent.com/102421671/222897675-91b1d129-213a-42e9-af30-96fb792f48b5.png)
 
 
 P.S. 
 
 Защита в середине апреля
+
+
+
+P.P.S.
+
+Дальше чисто для меня примеры того, что будет, дабы понимать что писать:
+
+1)
+
+![image](https://user-images.githubusercontent.com/102421671/222967833-b8de0431-1584-493d-a510-1a6b776517d1.png)
+
+(надо обсудить - из за сложности)
+
+
+2)написать рассылку по почте в момент уведомления
+
+3) начать делать таблицу с задачами 
+
