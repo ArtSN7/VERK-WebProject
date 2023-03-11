@@ -19,7 +19,7 @@
     </div>
     <div class="form_item">
        <p>
-        <label for="email">Login: </label>
+        <label for="email">Email: </label>
         {{ form.email(class="form-control", type="email") }}<br>
         {% for error in form.email.errors %}
             <p class="alert alert-danger" role="alert">
@@ -29,9 +29,27 @@
     </p>
     </div>
     <p>
-        <label for="password">Passcode: </label>
+        <label for="login">Login: </label>
+        {{ form.login(class="form-control", type="label") }}<br>
+        {% for error in form.login.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        <label for="password">Password: </label>
         {{ form.password(class="form-control", type="password") }}<br>
         {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        <label for="password">Password-again: </label>
+        {{ form.password_again(class="form-control", type="password") }}<br>
+        {% for error in form.password_again.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
@@ -51,11 +69,5 @@
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     {{message}}
 </form>
-
 </body>
-
 </html>
-
-
-
-
