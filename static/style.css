@@ -1,0 +1,588 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    background-color: #0A1833;
+    font-family: Nunito, Arial;
+    display: flex;
+}
+
+h1 {
+    font-family: Arial;
+    color: #FFF;
+    /*font-size: 60px;*/
+}
+
+h2 {
+    font-family: Arial;
+    color: #FFF;
+    font-size: 24px;
+}
+
+h4 {
+    font-family: Nunito;
+    font-size: 16px;
+    color: #5C7099;
+}
+
+h4 a {
+    color: #5C7099;
+}
+
+h3 {
+    font-family: Nunito;
+    font-size: 16px;
+    color: #FFF;
+}
+
+p {
+    font-family: Nunito;
+    font-size: 16px;
+    color: #FFF;
+}
+
+aside {
+    padding-top: 1%;
+    padding: 0%;
+    max-width: 280px;
+    border-width: 0px;
+    border-right-width: 2px;
+    border-style: solid;
+    border-color: #1F3359;
+    position: fixed;
+    background-color: #0A1833;
+    height: 100%;
+}
+
+.account_menu {
+    display: flex;
+    margin-top: 4%;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-style: solid;
+    border-color: #1F3359;
+    border-width: 0px;
+    border-bottom-width: 2px;
+}
+
+.greeting {
+    display: grid;
+    margin-left: 20px;
+    min-width: 180px;
+}
+
+.profile_pic img {
+    width: 60px;
+}
+
+.page_menu {
+    padding-left: 20px;
+    margin-left: 5px;
+    padding-bottom: 30px;
+    border-style: solid;
+    border-color: #1F3359;
+    border-width: 0px;
+    border-bottom-width: 2px;
+}
+
+.page_element {
+    display: flex;
+    margin: -10px;
+}
+
+.icon img {
+    max-width: 60px;
+    width: 40%;
+    min-width: 30px;
+    margin-left: 4px;
+    margin-top: 15px;
+}
+
+aside .icon img {
+    margin-right: 120%;
+}
+
+.small_arrow img {
+    height: 12px;
+}
+
+.projects_menu {
+    background-color: #102040;
+    margin: 10px;
+    padding-bottom: 60px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.project_element {
+    margin-top: 10px;
+}
+
+.project_element .small_arrow {
+    margin-left: 200px;
+    margin-top: -40px;
+    /*margin-bottom: 0px;*/
+}
+
+.projects_menu_header {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.projects_menu_header .icon {
+    margin-left: 120px;
+    height: 15px;
+}
+
+.form {
+    display: grid;
+    color: #FFF;
+    max-width: 20%;
+    margin-top: 10%;
+    margin-right: 40%;
+    margin-left: 40%;
+}
+
+.form h1 {
+    text-align: center;
+}
+
+.form_item {
+    display: grid;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form input {
+    background-color: #102040;
+    border: None;
+    border-radius: 10px;
+    padding: 10px; 
+    font-family: Nunito;
+    font-size: 16px;
+    width: 100%;
+    /* min-width: 300px;
+    max-width: 400px; */
+    height: 40px;
+    color: #FFF;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form button {
+    width: 60%;
+    /* min-width: 200px;
+    max-width: 300px; */
+    height: 60px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: #3361FF;
+    color: #FFF;
+    border: None;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Nunito;
+    font-size: 16px;
+}
+
+.viewport {
+    display: grid;
+    margin-left: 280px;
+    width: 100%;
+}
+
+.viewport h1 {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 40px;
+    margin-right: 20px;
+}
+
+.viewport h2 {
+    margin-top: 15px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.sheet {
+    display: grid;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.card {
+    display: grid;
+    background-color: #102040;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 360px;
+    border-color: #1F3359;
+    height: 360px;
+    margin-right: 10px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    max-height: 240px;
+    min-height: 240px;
+    margin-bottom: 10px;
+}
+
+.card h3 {
+    margin: 10px;
+}
+
+.card p {
+    margin: 10px;
+}
+
+.projects_menu h4 {
+    color: #A3B1CC;
+}
+
+.project_menu_footer {
+    display: flex;
+    margin-top: 20px;
+}
+
+.project_menu_footer h4 {
+    /*display: flex;*/
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.project_menu_footer .icon img {
+    /*height: 20px;*/
+    width: 15px;
+}
+
+h3 a {
+    font-family: Nunito;
+    font-size: 16px;
+    color: #FFF;
+}
+
+.project_view_header {
+    display: flex;
+    border-width: 2px;
+    border-color: #1F3359;
+    border-bottom-style: solid;
+    height: 70px;
+}
+
+.control_panel {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.control_panel button {
+    width: 100px;
+    height: 48px;
+    margin-top: -5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #3361FF;
+    color: #FFF;
+    border: None;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: Nunito;
+    font-size: 16px;
+}
+
+.todo_list {
+    margin-left: 20px;
+}
+
+/*.task checkbox {
+    background-color: #1F3359;
+}*/
+
+.todo {
+    color: #FFF;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #102040;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 1000px;
+}
+
+
+/* для элемента input c type="checkbox" */
+.task_tick>input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+/* для элемента label, связанного с .task_tick */
+.task_tick>span {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+/* создание в label псевдоэлемента before со следующими стилями */
+.task_tick>span::before {
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    border: 1px solid #adb5bd;
+    border-radius: 10px;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+/* стили при наведении курсора на checkbox */
+.task_tick>input:not(:disabled):not(:checked)+span:hover::before {
+    border-color: #b3d7ff;
+}
+
+/* стили для активного чекбокса (при нажатии на него) */
+.task_tick>input:not(:disabled):active+span::before {
+    background-color: #b3d7ff;
+    border-color: #b3d7ff;
+}
+
+/* стили для чекбокса, находящегося в фокусе */
+.task_tick>input:focus+span::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+.task_tick>input:focus:not(:checked)+span::before {
+    border-color: #80bdff;
+}
+
+/* стили для чекбокса, находящегося в состоянии checked */
+.task_tick>input:checked+span::before {
+    border-color: #0b76ef;
+    background-color: #0b76ef;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
+}
+
+/* стили для чекбокса, находящегося в состоянии disabled */
+.task_tick>input:disabled+span::before {
+    background-color: #e9ecef;
+}
+
+.project_info {
+    display: grid;
+    border-width: 2px;
+    border-color: #1F3359;
+    border-left-style: solid;
+    width: 460px;
+    height: 100%;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.project_view_content {
+    width: 1000px;
+    padding: 20px;
+}
+
+.columns {
+    display: flex;
+}
+
+.project_description img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.project_attachment {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.project_attachment img {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+}
+
+.collaborators {
+    display: flex;
+    margin-top: 5px;
+    width: 150px;
+    padding-left: 30px;
+}
+
+.collaborators img {
+    width: 40px;
+    border-style: solid;
+    border-width: 4px;
+    border-radius: 30px;
+    margin-left: -10px;
+    border-color: #0A1833;
+}
+
+.project_view_header h2 {
+    width: 1200px;
+}
+
+.list_of_collaborators {
+    display: grid;
+}
+
+.linar_collaborator {
+    display: flex;
+    width: 420px;
+    margin-top: 10px;
+}
+
+.linar_collaborator img {
+    width: 60px;
+}
+
+.linar_collaborator p {
+    margin-left: 10px;
+}
+
+.large_calendar .week {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.large_calendar .week .day {
+    display: grid;
+    background-color: #102040;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 140px;
+    border-color: #1F3359;
+    height: 100px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.large_calendar .week .day h4 {
+    margin-top: -2px;
+    font-size: 12px;
+}
+
+.large_calendar .week .day .event_pink p {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.large_calendar .week .day .event_pink {
+    background-color: #DE519B;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 2px;
+}
+
+.large_calendar .week .day .event_blue p {
+    font-size: 12px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.large_calendar .week .day .event_blue {
+    background-color: #7D7BDD;
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    margin-bottom: 2px;
+}
+
+.large_calendar .week .day p {
+    font-size: 12px;
+    margin-top: -2px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.events_for_today .event_pink {
+    background-color: #DE519B;
+    border-radius: 10px;
+    padding: 10px;
+    /*display: grid;*/
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.events_for_today .event_blue {
+    background-color: #7D7BDD;
+    border-radius: 10px;
+    padding: 10px;
+    /*display: grid;*/
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.events_for_today p {
+    margin-top: -5px;
+}
+
+.events_for_today h4 {
+    color: #FFF;
+    font-size: 12px;
+    margin-top: -10px;
+}
+
+.large_calendar .week_header {
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.large_calendar .week_header .day h4{
+    text-align: center;
+    font-size: 12px;
+    margin-top: -2px;
+    color: #5C7099;
+}
+
+.large_calendar .week_header .day {
+    display: grid;
+    /*background-color: #102040;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;*/
+    width: 140px;
+    /*border-color: #1F3359;*/
+    height: 15px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.table {
+   border: 1px solid #1F3359;
+     width: 65%;
+}
+
+/* границы ячеек первого ряда таблицы */
+.th {
+   margin: 10px;
+   border: 1px solid #1F3359;
+}
+
+/* границы ячеек тела таблицы */
+.td {
+   margin: 10px;
+   border: 1px solid #1F3359;
+   color: #FFF;
+}
+
+.pic_table img {
+    width: 30px;
+}
