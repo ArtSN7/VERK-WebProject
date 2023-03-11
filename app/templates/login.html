@@ -37,13 +37,14 @@
                 </p>
                 {% endfor %}
             </p>
-        </div>
+    </div>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
         <div class="form_item">
-            <button type="submit" value="Log in">Log in</button>
+            <input type="button" value="Sign up" onClick='location.href="/registration"'>
         </div>
+
     </form>
-
-
 </body>
 
 </html>

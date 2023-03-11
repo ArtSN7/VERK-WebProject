@@ -26,7 +26,7 @@ def load_user(user_id):
 class LoginForm(FlaskForm):
     email = EmailField('Почта', validators=[DataRequired()])
     password = PasswordField('Пароль', validators=[DataRequired()])
-    submit = SubmitField('Войти')
+    submit = SubmitField('Login')
 
 
 class RegistrationForm(FlaskForm):
@@ -49,12 +49,12 @@ class RegistrationForm(FlaskForm):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-
+    db_session = session.create_session()
     if form.validate_on_submit():
-        user = db_session.query(User).filter(User.email == form.email.data).first()
+        user = db_session.query(User).filter(User.login == form.email.data).first()
 
         if user and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
+            login_user(user)
             return redirect('/main')
 
         return render_template('login.html', message='Wrong login or password', form=form)
@@ -69,27 +69,26 @@ def registration():
 
     if form.validate_on_submit():
         if form.password.data != form.password_again.data:
-            return render_template('registration.html', title='Registration', form=form,
+            return render_template('signup.html', title='Registration', form=form,
                                    message="Passwords are not the same")
 
         if db_session.query(User).filter(User.email == form.email.data).first():
-            return render_template('registration.html', title='Registration', form=form,
+            return render_template('signup.html', title='Registration', form=form,
                                    message="Opps, the current email is already used")
 
         user = User(
             login=form.login.data,
-            password=form.password.data,
             email=form.email.data,
             name=form.name.data,
             picture=1
         )
-
+        user.set_password(form.password.data)
         db_session.add(user)
         db_session.commit()
 
         return redirect('/login')
 
-    return render_template('registration.html', title='Registration', form=form)
+    return render_template('signup.html', title='Registration', form=form)
 
 
 @app.route('/main')
