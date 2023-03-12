@@ -45,20 +45,17 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Register')
 
 
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     db_session = session.create_session()
     if form.validate_on_submit():
-        user = db_session.query(User).filter(User.login == form.email.data).first()
-
-        if user and user.check_password(form.password.data):
+        user = db_session.query(User).filter(User.email == form.email.data).first()
+        pas = user.password
+        if user and user.check_password(pas, form.password.data):
             login_user(user)
-            return redirect('/main')
-
+            return redirect('/')
         return render_template('login.html', message='Wrong login or password', form=form)
-
     return render_template('login.html', title='Login', form=form)
 
 
@@ -83,6 +80,7 @@ def registration():
             picture=1
         )
         user.set_password(form.password.data)
+        user.password = user.password_hash
         db_session.add(user)
         db_session.commit()
 
