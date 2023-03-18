@@ -566,21 +566,21 @@ h3 a {
 }
 
 .table {
-   border: 1px solid #1F3359;
-     width: 65%;
+    border: 1px solid #1F3359;
+    width: 65%;
 }
 
 /* границы ячеек первого ряда таблицы */
 .th {
-   margin: 10px;
-   border: 1px solid #1F3359;
+    margin: 10px;
+    border: 1px solid #1F3359;
 }
 
 /* границы ячеек тела таблицы */
 .td {
-   margin: 10px;
-   border: 1px solid #1F3359;
-   color: #FFF;
+    margin: 10px;
+    color: #FFF;
+    border: 1px solid #1F3359;
 }
 
 .pic_table img {

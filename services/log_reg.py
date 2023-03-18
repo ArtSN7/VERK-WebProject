@@ -1,26 +1,25 @@
+#file with registration and login
+
+
 import data.db_session as session
 from data.users import User
 from flask import Flask, redirect, render_template, request
 from flask_login import LoginManager, logout_user, login_required, login_user
 import datetime
+import flask
 from wtforms import PasswordField, BooleanField, SubmitField, EmailField, SearchField, SelectField, IntegerField, \
     SelectFieldBase, DateTimeField, SelectMultipleField, StringField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
 
-app = Flask(__name__)
 
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-app.config['PERMANENT_SESSION_LIFETIME'] = datetime.timedelta(days=1)
-
-login_manager = LoginManager()
-login_manager.init_app(app)
+blueprint = flask.Blueprint('log_reg', __name__, template_folder='templates')
 
 
-@login_manager.user_loader
-def load_user(user_id):
-    return db_session.query(User).get(user_id)
+session.global_init("db/blogs.db")
+db_session = session.create_session()
+
 
 
 class LoginForm(FlaskForm):
@@ -42,24 +41,30 @@ class RegistrationForm(FlaskForm):
 
     # сделать потом выбор picture из фозможных вариантов!
 
-    submit = SubmitField('Register')
+    submit = SubmitField('Sign up')
 
 
-@app.route('/login', methods=['GET', 'POST'])
+@blueprint.route('/', methods=['GET', 'POST'])
+@blueprint.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     db_session = session.create_session()
+    
     if form.validate_on_submit():
         user = db_session.query(User).filter(User.email == form.email.data).first()
         pas = user.password
+        
         if user and user.check_password(pas, form.password.data):
             login_user(user)
-            return redirect('/')
+            
+            return redirect('/main')
+        
         return render_template('login.html', message='Wrong login or password', form=form)
+    
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route('/registration', methods=['GET', 'POST'])
+@blueprint.route('/registration', methods=['GET', 'POST'])
 def registration():
     form = RegistrationForm()
     db_session = session.create_session()
@@ -89,21 +94,9 @@ def registration():
     return render_template('signup.html', title='Registration', form=form)
 
 
-@app.route('/main')
-@login_required
-def main():
-    return render_template('index.html')
 
-
-@app.route('/logout')
+@blueprint.route('/logout')
 @login_required
 def logout():
     logout_user()
     return redirect("/")
-
-
-if __name__ == '__main__':
-    session.global_init("db/blogs.db")
-    db_session = session.create_session()
-
-    app.run(port=8080, host='127.0.0.1')
