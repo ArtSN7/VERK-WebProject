@@ -67,7 +67,7 @@ aside {
 .greeting {
     display: grid;
     margin-left: 20px;
-    min-width: 180px;
+    min-width: 130px;
 }
 
 .profile_pic img {
@@ -80,6 +80,7 @@ aside {
     padding-bottom: 30px;
     border-style: solid;
     border-color: #1F3359;
+    border-bottom: None;
     border-width: 0px;
     border-bottom-width: 2px;
 }
@@ -105,6 +106,9 @@ aside .icon img {
     height: 12px;
 }
 
+.projects_menu {
+    display: None;
+}
 .projects_menu {
     background-color: #102040;
     margin: 10px;
@@ -156,7 +160,7 @@ aside .icon img {
     background-color: #102040;
     border: None;
     border-radius: 10px;
-    padding: 10px; 
+    padding: 10px;
     font-family: Nunito;
     font-size: 16px;
     width: 100%;
@@ -565,18 +569,18 @@ h3 a {
     padding: 10px;
 }
 
-.table {
+/*.table {
     border: 1px solid #1F3359;
     width: 65%;
 }
 
-/* границы ячеек первого ряда таблицы */
+границы ячеек первого ряда таблицы
 .th {
     margin: 10px;
     border: 1px solid #1F3359;
 }
 
-/* границы ячеек тела таблицы */
+границы ячеек тела таблицы
 .td {
     margin: 10px;
     color: #FFF;
@@ -585,4 +589,61 @@ h3 a {
 
 .pic_table img {
     width: 30px;
+}*/
+
+.sheet .row .card .collaborators .small_user img {
+    display: None;
+}
+
+.notification_table {
+    width:100%;
+    display: flex;
+    grid-template-columns: 30% 40% 30%;
+    align-items: center;
+}
+.notification_table tr {
+    height: 100px;
+}
+/*.notification_table td {
+    max-width: 33%;
+}*/
+.notification_table img {
+    width: 100%;
+    max-width: 30px;
+    height: 100%;
+    max-height: 30px;
+}
+
+.tasks_sheet {
+    display: flex;
+    margin: 20px;
+}
+
+.tasks_sheet .tasks_section {
+    display: grid;
+    background-color: #102040;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    width: 360px;
+    border-color: #1F3359;
+    height: 760px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.tasks_sheet .tasks_section h4 {
+    text-align: center;
+}
+
+.tasks_sheet .tasks_section p {
+    color: #FFF;
+}
+
+.tasks_sheet .tasks_section .task_card {
+    display: inline;
+}
+
+.tasks_sheet .tasks_section .task_card .collaborators img {
+    border-color: #102040;
 }

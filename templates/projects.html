@@ -4,149 +4,119 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>VERK | Projects</title>
-    <link href="static/style.css" rel="stylesheet" type="text/css" />
+    <title>{{title}}</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
     </style>
 </head>
 
 <body>
-    {% extends "base.html" %}
-    {% block content %}
-
-    <div class="viewport">
-        <h1>Projects</h1>
-        <div class="sheet">
-            <div class="row">
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80">
-                    </div>
-                    <h3>Codding</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
+{% extends "base.html" %}
+{% block content %}
+<div class="viewport">
+    <h1>Projects</h1>
+    <div class="sheet">
+        {% for i in range(3) %}
+        <div class="row">
+            {% for item in projects %}
+            <div class="card">
+                <div class="card_cover">
+                    <img src={{item["img"]}}>
                 </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80">
-                    </div>
-                    <h3>Design</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80">
-                    </div>
-                    <h3>Marketing</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80">
-                    </div>
-                    <h3>Prototyping</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
+                <h3>{{item["title"]}}</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80">
-                    </div>
-                    <h3>Card title</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div class="row">
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80">
                 </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
-                    </div>
-                    <h3><a href="project_view.html">Presentation</a></h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
-                    </div>
-                    <h3>Card title</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
-                    </div>
-                    <h3>Card title</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
+                <h3>Card title</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80">
-                    </div>
-                    <h3>Card title</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
+                </div>
+                <h3><a href="project_view.html">Presentation</a></h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
                     </div>
                 </div>
-                <div class="card">
-                    <div class="card_cover">
-                        <img src="https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80">
+            </div>
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
+                </div>
+                <h3>Card title</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
                     </div>
-                    <h3>Card title</h3>
-                    <p>Description</p>
-                    <div class="collaborators">
-                        <div class="small_user">
-                            <img src="">
-                        </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80">
+                </div>
+                <h3>Card title</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80">
+                </div>
+                <h3>Card title</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_cover">
+                    <img src="https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80">
+                </div>
+                <h3>Card title</h3>
+                <p>Description</p>
+                <div class="collaborators">
+                    <div class="small_user">
+                        <img src="">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
-  </body>
+</div>
+
+
+{% endblock %}
+</body>
 
 </html>

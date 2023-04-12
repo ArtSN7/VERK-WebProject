@@ -20,40 +20,36 @@
             <div class="greeting">
                 <h3>{{name}}</h3>
             </div>
+            <div class="icon">
+                <img src="static/icons/settings.png">
+            </div>
         </div>
         <div class="page_menu">
             <div class="page_element">
                 <div class="icon">
-                    <img src="static/icons/dashboard.png">
-                </div>
-                <h4><a href="dashboard.html">Dashboard</a></h4>
-            </div>
-            <div class="page_element">
-                <div class="icon">
                     <img src="static/icons/calendar.png">
                 </div>
-                <h4><a href="agenda">Agenda</a></h4>
+                <h4><a href="/agenda/{{id}}">Agenda</a></h4>
             </div>
             <div class="page_element">
                 <div class="icon">
                     <img src="static/icons/tasks.png">
                 </div>
-                <h4><a href="tasks">Tasks</a></h4>
+                <h4><a href="/tasks/{{id}}">Tasks</a></h4>
             </div>
             <div class="page_element">
                 <div class="icon">
                     <img src="static/icons/folder.png">
                 </div>
-                <h4><a href="projects">Projects</a></h4>
+                <h4><a href="/projects/{{id}}">Projects</a></h4>
             </div>
             <div class="page_element">
                 <div class="icon">
                     <img src="static/icons/notifications.png">
                 </div>
-                <h4><a href="notifications">Notifications</a></h4>
+                <h4><a href="/notifications/{{id}}">Notifications</a></h4>
             </div>
         </div>
-
     </aside>
 {% block content %}{% endblock %}
 </body>
