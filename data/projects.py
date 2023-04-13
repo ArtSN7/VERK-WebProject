@@ -1,5 +1,4 @@
-#тут тип нельзя было написать projects? что за бред челы ну вы совсем больные камон
-#ну блин че за клиника але почему 2 класса project в двух разных файлах бум бум совсем вы 
+#table for projects
 
 import sqlalchemy
 from sqlalchemy import ForeignKey
@@ -8,16 +7,11 @@ from sqlalchemy_serializer import SerializerMixin
 
 
 class Project(SqlAlchemyBase, SerializerMixin):
-    __tablename__ = 'taskwer'
+    __tablename__ = 'Project'
     
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     
-    project = sqlalchemy.Column(ForeignKey('projects.id'), nullable=True)
+    tasks = sqlalchemy.Column(sqlalchemy.String, default='') # ID через запятую ( 1, 4, 5 и тд)
     
-    description = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    users = sqlalchemy.Column(sqlalchemy.String, nullable=True) # ID юзеров в проекте ( также через запятую )
     
-    users = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    
-    start_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
-    
-    end_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
