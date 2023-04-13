@@ -48,7 +48,7 @@ def taking_tasks(user_id):
     
     for i in taking_dates()[0]:
         
-        tasks = db_session.query(Tasks).filter(Tasks.end_date == i, Tasks.users.like(f"%{str(user_id)}%")).all()
+        tasks = db_session.query(Tasks).filter(Tasks.end_date == i, Tasks.users.like(f"%{str(user_id)},%")).all()
         
         
         if len(tasks) > 2:
