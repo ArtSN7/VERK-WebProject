@@ -44,7 +44,38 @@ def projects(user_id):
             xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
             "title": "Prototyping"
         },
+        {
+            "img": "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+            "title": "Card title"
+        },
+        {
+            "img": "https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+            "title": "Presentation"
+        },
+        {
+            "img": "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+            "title": "Card title"
+        },
+        {
+            "img": "https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+            "title": "Card title"
+        },
+        {
+            "img": "https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+            "title": "Card title"
+        },
+        {
+            "img": "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=Mnw"
+                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+            "title": "Card title"
+        },
     ]
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
-    return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id, projects=prj_list)
+    return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id, projects=prj_list,
+                           len=len(prj_list))
