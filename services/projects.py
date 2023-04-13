@@ -12,7 +12,7 @@ from wtforms import PasswordField, BooleanField, SubmitField, EmailField, Search
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
-from funcs import load_user
+
 
 
 blueprint = flask.Blueprint('rpojects', __name__, template_folder='templates')
