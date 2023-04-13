@@ -99,6 +99,7 @@ def logout():
     return redirect("/")
 
 
+#тестовая штука 
 @blueprint.route('/base/<int:user_id>')
 def base(user_id):
     # тут имя надо брать введенное пользователем, но я даун не знаю как это сделать, а щас уже разбираться поздно да и
@@ -108,52 +109,3 @@ def base(user_id):
     user = db_sess.query(User).get(user_id)
     print(LoginManager.user_loader)
     return render_template('base.html', title='Verk | Base', name=user.name, id=user_id)
-
-
-@blueprint.route('/agenda/<int:user_id>')
-def agenda(user_id):
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id)
-
-
-@blueprint.route(f'/projects/<int:user_id>')
-def projects(user_id):
-    prj_list = [{
-        "img": "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=Mnw\
-                    xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        "title": "Codding"
-    },
-        {
-            "img": "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=Mnw\
-                    xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-            "title": "Design"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=Mnw\
-            xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-            "title": "Marketing"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=Mnw\
-            xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-            "title": "Prototyping"
-        },
-    ]
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id, projects=prj_list)
-
-
-@blueprint.route('/tasks/<int:user_id>')
-def tasks(user_id):
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('tasks.html', title='Verk | Tasks', name=user.name, id=user_id)
-
-
-@blueprint.route('/notifications/<int:user_id>')
-def notifications(user_id):
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('notifications.html', title='Verk | Notifications', name=user.name, id=user_id)
