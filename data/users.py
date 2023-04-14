@@ -4,7 +4,7 @@
 
 import sqlalchemy
 from flask_login import UserMixin
-from db_session import SqlAlchemyBase
+from .db_session import SqlAlchemyBase
 from werkzeug.security import check_password_hash, generate_password_hash
 from sqlalchemy_serializer import SerializerMixin
 
