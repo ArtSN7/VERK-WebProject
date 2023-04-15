@@ -26,6 +26,7 @@ h4 {
 
 h4 a {
     color: #5C7099;
+    text-decoration: none;
 }
 
 h3 {
@@ -87,7 +88,6 @@ aside {
 
 .page_element {
     display: flex;
-    margin: -10px;
 }
 
 .icon img {
