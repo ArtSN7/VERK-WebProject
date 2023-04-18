@@ -34,7 +34,7 @@ def taking_dates():
         date = datetime.date.today() + datetime.timedelta(days=i)
 
         spis1.append(date)
-        spis2.append((date.month, date.day))
+        spis2.append((date.month, date.day, date.year))
 
     return (spis1,
             spis2)  # spis1 - это даты для проверки задач ; spis2 возвращает список
@@ -48,7 +48,6 @@ def taking_tasks(user_id):
     response = []
 
     for i in taking_dates()[0]:
-
         tasks = db_sess.query(Tasks).filter(Tasks.end_date == i, Tasks.users.like(f"%{str(user_id)},%")).all()
 
         response.append([i.description for i in tasks])
@@ -63,16 +62,18 @@ def agenda(user_id):
     user = db_sess.query(User).get(user_id)
 
     tasks, dates = taking_tasks(user_id)
-    weekday = datetime.datetime.now().weekday()
+    today = datetime.datetime.now()
+    weekday = today.weekday()
 
     print(tasks)
     print(dates)
-    days = {0:"Понедельник", 1:"Вторник", 2:"Среда", 3:"Четверг", 4:"Пятница", 5:"Суббота", 6:"Воскресенье"}
+    days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
 
     return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
-                           months=months, tasks=tasks, len=len, curday=0, curmonth=0, weekday=weekday)
+                           months=months, tasks=tasks, len=len, curday=0, curmonth=0, weekday=weekday,
+                           year_now=today.year)
 
 
 @blueprint.route('/agenda/<int:user_id>/<int:date_id>')
@@ -81,6 +82,8 @@ def new_agenda(user_id, date_id):
     user = db_sess.query(User).get(user_id)
 
     tasks, dates = taking_tasks(user_id)
+    today = datetime.datetime.now()
+    weekday = today.weekday()
 
     current_day = dates[date_id][1]
     current_month = dates[date_id][0]
@@ -95,4 +98,4 @@ def new_agenda(user_id, date_id):
 
     return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
                            months=months, tasks=tasks, len=len, curday=current_day, curmonth=current_month,
-                           curdate=date_id)
+                           curdate=date_id, weekday=weekday, year_now=today.year)
