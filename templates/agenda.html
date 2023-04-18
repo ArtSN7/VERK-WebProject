@@ -23,9 +23,9 @@
             <h2>{{months[dates[0][0] - 1]}} {{dates[0][1]}} - {{months[dates[-1][0] - 1]}} {{dates[-1][1]}}</h2>
             <div class="large_calendar">
                 <div class="week_header">
-                    {% for i in range(7) %}
+                    {% for i in range(weekday, weekday + 7) %}
                     <div class="day">
-                        <h4>{{days[i]}}</h4>
+                        <h4>{{days[i%7]}}</h4>
                     </div>
                     {% endfor %}
                 </div>

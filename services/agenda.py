@@ -63,16 +63,16 @@ def agenda(user_id):
     user = db_sess.query(User).get(user_id)
 
     tasks, dates = taking_tasks(user_id)
+    weekday = datetime.datetime.now().weekday()
 
     print(tasks)
-
     print(dates)
-    days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    days = {0:"Понедельник", 1:"Вторник", 2:"Среда", 3:"Четверг", 4:"Пятница", 5:"Суббота", 6:"Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
 
     return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
-                           months=months, tasks=tasks, len=len, curday=0, curmonth=0)
+                           months=months, tasks=tasks, len=len, curday=0, curmonth=0, weekday=weekday)
 
 
 @blueprint.route('/agenda/<int:user_id>/<int:date_id>')
