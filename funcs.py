@@ -8,7 +8,7 @@ from wtforms import PasswordField, BooleanField, SubmitField, EmailField, Search
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
-from services import log_reg, tasks, projects, notifications, agenda, project_adding
+from services import log_reg, tasks, projects, notifications, agenda, project_adding, task_adding
 
 app = Flask(__name__)
 
@@ -36,5 +36,6 @@ if __name__ == '__main__':
     app.register_blueprint(projects.blueprint)
     app.register_blueprint(notifications.blueprint)
     app.register_blueprint(project_adding.blueprint)
+    app.register_blueprint(task_adding.blueprint)
 
     app.run(port=8080, host='127.0.0.1')

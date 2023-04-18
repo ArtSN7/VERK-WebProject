@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ title }}</title>
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+    </style>
+
+</head>
+
+<body>
+<form action="" method="post" class="form">
+    {{ form.hidden_tag() }}
+    <div class="form_header">
+            <h1><b>Verk</b></h1>
+    </div>
+    <div class="form_item">
+		<p>
+			<label for="description">Description: </label>
+			{{ form.description(class="form-control", type="label") }}<br>
+			{% for error in form.description.errors %}
+				<p class="alert alert-danger" role="alert">
+					{{ error }}
+				</p>
+			{% endfor %}
+		</p>
+    </div>
+    <p>
+        <label for="users">Users: </label>
+        {{ form.users(class="form-control", type="label") }}<br>
+        {% for error in form.users.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    <p>
+        <label for="end_date">End date: </label>
+        {{ form.end_date(class="form-control", type="date") }}<br>
+        {% for error in form.end_date.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+	<div>{{ message }}</div>
+</form>
+</body>
+</html>

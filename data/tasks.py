@@ -5,6 +5,7 @@ import sqlalchemy
 from sqlalchemy import ForeignKey
 from .db_session import SqlAlchemyBase
 from sqlalchemy_serializer import SerializerMixin
+import datetime
 
 
 class Tasks(SqlAlchemyBase, SerializerMixin):
@@ -18,6 +19,6 @@ class Tasks(SqlAlchemyBase, SerializerMixin):
     
     users = sqlalchemy.Column(sqlalchemy.String, nullable=True) # ID людей, которые отвечают за задачу ( 1, 4, 6 и тд)
     
-    start_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
+    start_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True, default=datetime.date.today())
     
     end_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
