@@ -5,70 +5,66 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{title}}</title>
-    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
     </style>
     <link rel="icon" type="image/png" href="/favicons/folder.png"/>
-    
+
 </head>
 
 <body>
-    {% extends "base.html" %}
-    {% block content %}
-    <div class="viewport">
-        <div class="columns">
-            <div class="project_view_content">
-                <h2>{{months[dates[0][0] - 1]}} {{dates[0][1]}} - {{months[dates[-1][0] - 1]}} {{dates[-1][1]}}</h2>
-                <div class="large_calendar">
-                    <div class="week_header">
-                        {% for i in range(7) %}
-                        <div class="day">
-                            <h4>{{days[i]}}</h4>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% for i in range(6) %}
-                    <div class="week">
-                        {% for j in range(7) %}
-                        <div class="day">
-                            <h4>{{dates[7 * i + j][1]}}</h4>
-                        </div>
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-                </div> 
-            </div>
-            <div class="project_info">
-                <h2>{{months[dates[0][0] - 1]}} {{dates[0][1]}}</h2>
-
-                <h3>События</h3>
-                <div class="events_for_today">
-                    {% for i in range(1) %}
-                    <div class="event_pink">
-                        <p>Праздник</p>
-                        <h4>Весь день</h4>
-                    </div>
-                    {% endfor %}
-                    {% for i in range(1) %}
-                    <div class="event_blue">
-                        <p>Математика</p>
-                        <h4>8:30-9:15</h4>
+{% extends "base.html" %}
+{% block content %}
+<div class="viewport">
+    <div class="columns">
+        <div class="project_view_content">
+            <h2>{{months[dates[0][0] - 1]}} {{dates[0][1]}} - {{months[dates[-1][0] - 1]}} {{dates[-1][1]}}</h2>
+            <div class="large_calendar">
+                <div class="week_header">
+                    {% for i in range(7) %}
+                    <div class="day">
+                        <h4>{{days[i]}}</h4>
                     </div>
                     {% endfor %}
                 </div>
-
-                <h3>Задачи</h3>
-                <div class="todo_list">
-                    {% for i in range(1) %}
-                    <div class="todo">
-                        <label class="task_tick"><input type="checkbox" value="value-1"><span>Some task will be placed here</span></label>
+                {% for i in range(6) %}
+                <div class="week">
+                    {% for j in range(7) %}
+                    <div class="day">
+                        <h4><a href="/agenda/{{id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a></h4>
+                        <p>
+                        <h1>{{len(tasks[i * 7 + j])}}</h1></p>
                     </div>
                     {% endfor %}
                 </div>
+                {% endfor %}
             </div>
         </div>
+        <div class="project_info">
+            {% if curday == 0 %}
+            <p>
+            <h1>Выберите день</h1></p>
+            {% else %}
+            <h2>{{months[curmonth - 1]}} {{curday}}</h2>
+            <h3>Задачи</h3>
+            <div class="todo_list">
+                {% if not len(tasks[curdate]) %}
+                <p><b>На сегодня нет дел</b></p>
+                {% else %}
+                {% for i in range(len(tasks[curdate])) %}
+                <div class="todo">
+                    <label class="task_tick"><input type="checkbox"
+                                                    value="value-1"><span>{{tasks[curdate][i]}}</span></label>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
     </div>
+</div>
 {% endblock %}
 </body>
 

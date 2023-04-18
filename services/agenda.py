@@ -51,12 +51,7 @@ def taking_tasks(user_id):
 
         tasks = db_sess.query(Tasks).filter(Tasks.end_date == i, Tasks.users.like(f"%{str(user_id)},%")).all()
 
-        if len(tasks) > 2:
-            response.append((tasks[0].description, '...'))
-        elif len(tasks) == 0:
-            response.append(('', ''))
-        else:
-            response.append((tasks[0].description, tasks[1].description))
+        response.append([i.description for i in tasks])
 
     return (response,
             taking_dates()[1])  # задачи и дни
@@ -70,10 +65,34 @@ def agenda(user_id):
     tasks, dates = taking_tasks(user_id)
 
     print(tasks)
+
     print(dates)
     days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
 
     return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
-                           months=months)
+                           months=months, tasks=tasks, len=len, curday=0, curmonth=0)
+
+
+@blueprint.route('/agenda/<int:user_id>/<int:date_id>')
+def new_agenda(user_id, date_id):
+    db_sess = session.create_session()
+    user = db_sess.query(User).get(user_id)
+
+    tasks, dates = taking_tasks(user_id)
+
+    current_day = dates[date_id][1]
+    current_month = dates[date_id][0]
+
+    print(tasks)
+    print(dates)
+    print(current_day)
+    print(current_month)
+    days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"]
+    months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
+              "Декабрь"]
+
+    return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
+                           months=months, tasks=tasks, len=len, curday=current_day, curmonth=current_month,
+                           curdate=date_id)
