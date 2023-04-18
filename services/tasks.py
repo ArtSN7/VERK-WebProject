@@ -1,4 +1,4 @@
-# file with registration and login
+# решили не делать из за бесполезности
 
 
 import data.db_session as session

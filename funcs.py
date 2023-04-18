@@ -8,7 +8,7 @@ from wtforms import PasswordField, BooleanField, SubmitField, EmailField, Search
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
-from services import log_reg, tasks, projects, notifications, agenda
+from services import log_reg, tasks, projects, notifications, agenda, project_adding
 
 app = Flask(__name__)
 
@@ -29,10 +29,12 @@ if __name__ == '__main__':
     db_session = session.create_session()
 
     # reg, login, logout ; after success a person will be redirected to the main (/main)
+    
     app.register_blueprint(log_reg.blueprint)
-    app.register_blueprint(tasks.blueprint)
+    #app.register_blueprint(tasks.blueprint)
     app.register_blueprint(agenda.blueprint)
     app.register_blueprint(projects.blueprint)
     app.register_blueprint(notifications.blueprint)
+    app.register_blueprint(project_adding.blueprint)
 
     app.run(port=8080, host='127.0.0.1')
