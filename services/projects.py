@@ -14,7 +14,7 @@ from wtforms.validators import DataRequired
 from data.users import User
 from data.projects import Project
 
-blueprint = flask.Blueprint('rpojects', __name__, template_folder='templates')
+blueprint = flask.Blueprint('projects', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
