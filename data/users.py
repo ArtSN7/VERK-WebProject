@@ -20,6 +20,8 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
 
+    phone = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
+
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
 
     projects = sqlalchemy.Column(sqlalchemy.String, nullable=True, default=None)
