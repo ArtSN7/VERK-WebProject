@@ -8,6 +8,8 @@ from wtforms import PasswordField, BooleanField, SubmitField, EmailField, Search
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
+from data.projects import Project
+from data.tasks import Tasks
 from services import log_reg, tasks, projects, notifications, agenda, project_adding, task_adding, profile
 
 app = Flask(__name__)
