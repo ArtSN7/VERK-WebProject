@@ -15,10 +15,10 @@
     <aside>
         <div class="account_menu">
             <div class="profile_pic">
-                <img src="/static/profile_pics/profile_pic_peach.png">
+                <img src="{{list_of_avatars[avatar]}}">
             </div>
             <div class="greeting">
-                <h3>{{name}}</h3>
+                <h3><a href="/profile/{{id}}">{{name}}</a></h3>
             </div>
             <div class="icon">
                 <img src="/static/icons/settings.png">

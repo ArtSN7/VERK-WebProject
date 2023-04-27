@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{ title }}</title>
-    <link href="static/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
     </style>
@@ -20,7 +20,7 @@
     </div>
     <div class="form_item">
 		<p>
-			<label for="description">Description: </label>
+			<label for="description">Описание: </label>
 			{{ form.description(class="form-control", type="label") }}<br>
 			{% for error in form.description.errors %}
 				<p class="alert alert-danger" role="alert">
@@ -30,7 +30,7 @@
 		</p>
     </div>
     <p>
-        <label for="users">Users: </label>
+        <label for="users">Пользователи: </label>
         {{ form.users(class="form-control", type="label") }}<br>
         {% for error in form.users.errors %}
             <p class="alert alert-danger" role="alert">
@@ -39,7 +39,7 @@
         {% endfor %}
     </p>
     <p>
-        <label for="end_date">End date: </label>
+        <label for="end_date">Финальная дата: </label>
         {{ form.end_date(class="form-control", type="date") }}<br>
         {% for error in form.end_date.errors %}
             <p class="alert alert-danger" role="alert">
@@ -47,7 +47,6 @@
             </p>
         {% endfor %}
     </p>
-    </div>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 	<div>{{ message }}</div>
 </form>

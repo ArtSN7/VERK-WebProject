@@ -17,6 +17,9 @@
 {% block content %}
 <div class="viewport">
     <h1>Проекты</h1>
+    <div class="control_panel">
+                <button type="submit" onclick="window.location.href='/adding_project/{{id}}';" value="add_new">Добавить проект</button>
+    </div>
     <div class="sheet">
         {% for i in range(len // 4 + 1) %}
         <div class="row">
