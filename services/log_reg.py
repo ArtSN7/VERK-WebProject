@@ -98,15 +98,13 @@ def logout():
     return redirect("/")
 
 
-# меню для теста
+#тестовая штука 
 @blueprint.route('/base/<int:user_id>')
 def base(user_id):
-    list_of_img = ["/static/profile_pics/profile_pic_peach.png",
-                   "/static/profile_pics/profile_pic_blue.png",
-                   "/static/profile_pics/profile_pic_pink.png",
-                   "/static/profile_pics/profile_pic_violet.png"]
+    # тут имя надо брать введенное пользователем, но я даун не знаю как это сделать, а щас уже разбираться поздно да и
+    # я не соображу, поэтому чтобы без говнокода напишу заглушку. А еще нужно либо сделать выбор аватарки из
+    # предложенных, либо как в лицее основывываясь на возрасте, но тогда нужно в регистрации добавить ввод возраста
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
     print(LoginManager.user_loader)
-    return render_template('base.html', title='Verk | Base', name=user.name, id=user_id, list_of_img=list_of_img,
-                           avatar=user.picture)
+    return render_template('base.html', title='Verk | Base', name=user.name, id=user_id)

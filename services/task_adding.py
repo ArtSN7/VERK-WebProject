@@ -58,8 +58,8 @@ class AddingTaskForm(FlaskForm):
     submit = SubmitField('ADD')
 
 
-@blueprint.route('/adding_task/<int:user_id>', methods=['GET', 'POST'])
-def adding_task(user_id):
+@blueprint.route('/adding_project/<int:user_id>/<int:project_id>', methods=['GET', 'POST'])
+def adding_project(user_id, project_id):
     form = AddingTaskForm()
     db_session = session.create_session()
 
@@ -71,7 +71,7 @@ def adding_task(user_id):
             return render_template('adding_project.html', title='Adding Task', form=form,
                                    message="Some users were not found")
 
-        if checking_users_in_pr(check):
+        if checking_users_in_pr(check, project_id):
             return render_template('adding_project.html', title='Adding Task', form=form,
                                    message="Some users are not in the project")
 
@@ -81,6 +81,7 @@ def adding_task(user_id):
             answ = ', '.join(check)
 
         task = Tasks(
+            project=project_id,
             description=form.description.data,
             start_date=datetime.date.today(),
             end_date=form.end_date.data,

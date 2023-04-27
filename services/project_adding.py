@@ -85,4 +85,4 @@ def adding_project(user_id):
 
         return redirect(f'/projects/{user_id}')
 
-    return render_template('adding_project.html', title='Verk | Adding Project', form=form)
+    return render_template('adding_project.html', title='Adding Project', form=form)
