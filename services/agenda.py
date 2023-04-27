@@ -19,10 +19,6 @@ blueprint = flask.Blueprint('agenda', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
-list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
-               "/static/profile_pics/profile_pic_blue.png",
-               "/static/profile_pics/profile_pic_pink.png",
-               "/static/profile_pics/profile_pic_violet.png"]
 
 
 def taking_dates():
@@ -75,8 +71,7 @@ def agenda(user_id):
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
 
-    return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, days=days, dates=dates,
+    return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
                            months=months, tasks=tasks, len=len, curday=0, curmonth=0, weekday=weekday,
                            year_now=today.year)
 
@@ -103,5 +98,4 @@ def new_agenda(user_id, date_id):
 
     return render_template('agenda.html', title='Verk | Agenda', name=user.name, id=user_id, days=days, dates=dates,
                            months=months, tasks=tasks, len=len, curday=current_day, curmonth=current_month,
-                           curdate=date_id, weekday=weekday, year_now=today.year, list_of_avatars=list_of_avatars,
-                           avatar=user.picture)
+                           curdate=date_id, weekday=weekday, year_now=today.year)
