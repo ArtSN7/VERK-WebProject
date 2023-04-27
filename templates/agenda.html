@@ -49,14 +49,10 @@
             {% else %}
             <h2>{{months[curmonth - 1]}} {{curday}}</h2>
             <h3>Задачи</h3>
-            <div class="control_panel">
-                <button type="submit" onclick="window.location.href='/adding_task/{{id}}';" value="add_new">Добавить задачу</button>
-            </div>
             <div class="todo_list">
                 {% if not len(tasks[curdate]) %}
                 <p><b>На сегодня нет дел</b></p>
                 {% else %}
-
                 {% for i in range(len(tasks[curdate])) %}
                 <div class="todo">
                     <label class="task_tick"><input type="checkbox"

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>{{ title }}</title>
-    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <link href="static/style.css" rel="stylesheet" type="text/css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
     </style>
@@ -20,7 +20,7 @@
     </div>
     <div class="form_item">
        <p>
-        <label for="title">Название: </label>
+        <label for="title">Title: </label>
         {{ form.title(class="form-control", type="label") }}<br>
         {% for error in form.title.errors %}
             <p class="alert alert-danger" role="alert">
@@ -30,7 +30,7 @@
     </p>
     </div>
     <p>
-        <label for="description">Описание: </label>
+        <label for="description">Description: </label>
         {{ form.description(class="form-control", type="label") }}<br>
         {% for error in form.description.errors %}
             <p class="alert alert-danger" role="alert">
@@ -39,7 +39,7 @@
         {% endfor %}
     </p>
     <p>
-        <label for="img">Номер картинки: </label>
+        <label for="img">Image number: </label>
         {{ form.img(class="form-control", type="label") }}<br>
         {% for error in form.img.errors %}
             <p class="alert alert-danger" role="alert">
@@ -48,7 +48,7 @@
         {% endfor %}
     </p>
     <p>
-        <label for="users">Пользователи: </label>
+        <label for="users">Users: </label>
         {{ form.users(class="form-control", type="label") }}<br>
         {% for error in form.users.errors %}
             <p class="alert alert-danger" role="alert">
@@ -56,6 +56,7 @@
             </p>
         {% endfor %}
     </p>
+    </div>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
 	<div>{{ message }}</div>
 </form>
