@@ -18,6 +18,10 @@ blueprint = flask.Blueprint('projects', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
+list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
+               "/static/profile_pics/profile_pic_blue.png",
+               "/static/profile_pics/profile_pic_pink.png",
+               "/static/profile_pics/profile_pic_violet.png"]
 
 
 @blueprint.route(f'/projects/<int:user_id>')
@@ -45,58 +49,6 @@ def projects(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
 
-    return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id, projects=prj_list,
+    return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id,
+                           list_of_avatars=list_of_avatars, avatar=user.picture, projects=prj_list,
                            len=len(prj_list))
-
-
-''''prj_list = [{
-        "img": "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=Mnw\
-                    xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        "title": "Codding"
-    },
-        {
-            "img": "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=Mnw\
-                    xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-            "title": "Design"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=Mnw\
-            xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-            "title": "Marketing"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=Mnw\
-            xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-            "title": "Prototyping"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-            "title": "Card title"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-            "title": "Presentation"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-            "title": "Card title"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-            "title": "Card title"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            "title": "Card title"
-        },
-        {
-            "img": "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=Mnw"
-                   "xMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            "title": "Card title"
-        },
-    ] '''''

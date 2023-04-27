@@ -19,9 +19,15 @@ blueprint = flask.Blueprint('profile', __name__, template_folder='templates')
 session.global_init("db/blogs.db")
 db_session = session.create_session()
 
+list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
+               "/static/profile_pics/profile_pic_blue.png",
+               "/static/profile_pics/profile_pic_pink.png",
+               "/static/profile_pics/profile_pic_violet.png"]
 
-@blueprint.route(f'/profile/<int:user_id>')
+
+@blueprint.route('/profile/<int:user_id>')
 def agenda(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
-    return render_template('profile.html', title='Verk | Profile', name=user.name, id=user_id)
+    return render_template('profile.html', title='Verk | Profile', name=user.name, id=user_id, email=user.email,
+                           list_of_avatars=list_of_avatars, avatar=user.picture)

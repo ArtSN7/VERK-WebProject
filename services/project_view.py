@@ -12,20 +12,19 @@ from wtforms import PasswordField, BooleanField, SubmitField, EmailField, Search
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
+from data.tasks import Tasks
+from data.projects import Project
 
-blueprint = flask.Blueprint('notifications', __name__, template_folder='templates')
+blueprint = flask.Blueprint('agenda', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
 list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
-               "/static/profile_pics/profile_pic_blue.png",
-               "/static/profile_pics/profile_pic_pink.png",
-               "/static/profile_pics/profile_pic_violet.png"]
+                   "/static/profile_pics/profile_pic_blue.png",
+                   "/static/profile_pics/profile_pic_pink.png",
+                   "/static/profile_pics/profile_pic_violet.png"]
 
 
-@blueprint.route('/notifications/<int:user_id>')
-def notifications(user_id):
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('notifications.html', title='Verk | Notifications', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture)
+@blueprint.route('/project_view/<int:user_id>/<int:project_id>')
+def project_view(user_id, project_id):
+    pass

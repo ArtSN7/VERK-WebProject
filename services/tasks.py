@@ -19,6 +19,10 @@ blueprint = flask.Blueprint('tasks', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
+list_of_img = ["/static/profile_pics/profile_pic_peach.png",
+               "/static/profile_pics/profile_pic_blue.png",
+               "/static/profile_pics/profile_pic_pink.png",
+               "/static/profile_pics/profile_pic_violet.png"]
 
 
 def taking_dates():
@@ -58,4 +62,5 @@ def taking_tasks(user_id):
 def tasks(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
-    return render_template('tasks.html', title='Verk | Tasks', name=user.name, id=user_id)
+    return render_template('tasks.html', title='Verk | Tasks', name=user.name, id=user_id, list_of_img=list_of_img,
+                           avatar=user.picture)
