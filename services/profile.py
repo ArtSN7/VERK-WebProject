@@ -27,8 +27,8 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
 
 class EditForm(FlaskForm):
     email = EmailField('Почта')
-    name = PasswordField('Имя')
-    phone = PasswordField('Телефон')
+    name = StringField('Имя')
+    phone = StringField('Телефон')
     submit = SubmitField('Edit')
 
 
