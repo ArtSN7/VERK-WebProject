@@ -49,6 +49,9 @@ def agenda_edit(user_id):
         if form.email.data and db_session.query(User).filter(User.email == form.email.data).first():
             return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
                                    phone=user.phone, message="This email is already used", form=form, list_of_avatars=list_of_avatars, avatar=user.picture)
+        elif form.phone.data and db_session.query(User).filter(User.phone == form.phone.data).first():
+            return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
+                                   phone=user.phone, message="This phone is already used", form=form, list_of_avatars=list_of_avatars, avatar=user.picture)
 
         if form.name.data != "":
             user.name = form.name.data
