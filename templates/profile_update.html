@@ -48,11 +48,30 @@
         {% endfor %}
     </p>
     </div>
+    <div class="form_item">
+        <p>
+        <label for="password">Edit Password: </label>
+        {{ form.password(class="form-control", type="password") }}<br>
+        {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <div class="form_item">
+    <p>
+        <label for="password">Edit Password-again: </label>
+        {{ form.password_again(class="form-control", type="password") }}<br>
+        {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+            </div>
     <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
     {{message}}
-        <div class="form_item">
-            <input type="button" value="Login" onClick='location.href="/login"'>
-        </div>
 </form>
 {% endblock %}
 </body>

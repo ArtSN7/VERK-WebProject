@@ -26,6 +26,8 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
 
 
 class EditForm(FlaskForm):
+    password = PasswordField('Password')
+    password_again = PasswordField('Password again')
     email = EmailField('Почта')
     name = StringField('Имя')
     phone = StringField('Телефон')
@@ -52,6 +54,9 @@ def agenda_edit(user_id):
         elif form.phone.data and db_session.query(User).filter(User.phone == form.phone.data).first():
             return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
                                    phone=user.phone, message="This phone is already used", form=form, list_of_avatars=list_of_avatars, avatar=user.picture)
+        elif (form.password.data or form.password_again.data) and form.password.data != form.password_again.data:
+            return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
+                                   phone=user.phone, message="Passswords are not the same", form=form, list_of_avatars=list_of_avatars, avatar=user.picture)
 
         if form.name.data != "":
             user.name = form.name.data
@@ -59,6 +64,9 @@ def agenda_edit(user_id):
             user.phone = form.phone.data
         if form.email.data != "":
             user.email = form.email.data
+        if form.password.data != "":
+            user.set_password(form.password.data)
+            user.password = user.password_hash
         db_session.merge(user)
         db_session.flush()
         db_session.commit()
