@@ -8,24 +8,24 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="viewport">
-        <div class="project_view_header">
-            <h2>{{title}}</h2>
-            <div class="collaborators">
-                {% for collaborator in collaborators %}
-                <div class="collaborator">
-                    <img src={{collaborator['img']}}>
-                </div>
-                {% endfor %}
+    <div class="project_view_header">
+        <h2>{{title}}</h2>
+        <div class="collaborators">
+            {% for collaborator in collaborators %}
+            <div class="collaborator">
+                <img src={{collaborator['img']}}>
             </div>
-            <div class="control_panel">
-                <button type="submit" value="share">Share</button>
-            </div>
+            {% endfor %}
         </div>
-        <div class="columns">
-            <div class="project_view_content">
-                <h3>Calendar</h3>
-                <h2>{{year_now}} {{months[dates[0][0] - 1]}} {{dates[0][1]}} ꟷ {{dates[-1][2]}} {{months[dates[-1][0] - 1]}} {{dates[-1][1]}}</h2>
-                <div class="large_calendar">
+        <div class="control_panel">
+            <button type="submit" value="share">Share</button>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="project_view_content">
+            <h3>{{year_now}} {{months[dates[0][0] - 1]}} {{dates[0][1]}} ꟷ {{dates[-1][2]}} {{months[dates[-1][0] - 1]}}
+                {{dates[-1][1]}}</h3>
+            <div class="large_calendar">
                 <div class="week_header">
                     {% for i in range(weekday, weekday + 7) %}
                     <div class="day">
@@ -37,54 +37,83 @@
                 <div class="week">
                     {% for j in range(7) %}
                     <div class="day">
-                        <h4><a href="/agenda/{{user_id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a></h4>
+                        <h4><a href="/project_view/{{user_id}}/{{project_id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a>
+                        </h4>
                         <p>
-                        <h1>{{len(tasks[i * 7 + j])}}</h1></p>
+                        <h1>{{len(tasks[i * 7 + j])}}</h1>
                     </div>
                     {% endfor %}
                 </div>
                 {% endfor %}
             </div>
-                <h3>Tasks</h3>
+            <h3>Tasks</h3>
+            <div class="todo_list">
+
+                {% if curday == 0 %}
+                <h1>Выберите день</h1>
+                {% else %}
+                <h2>{{months[curmonth - 1]}} {{curday}}</h2>
+                <h3>Задачи</h3>
+                <div class="control_panel">
+                    <button type="submit" onclick="window.location.href='/adding_task/{{id}}';" value="add_new">Добавить
+                        задачу
+                    </button>
+                </div>
                 <div class="todo_list">
-                    {% for task in tasks%}
+                    {% if not len(tasks[curdate]) %}
+                    <p><b>На сегодня нет дел</b></p>
+                    {% else %}
+
+                    {% for task in tasks[curdate] %}
                     <div class="todo">
-                        <!--<label><input type="checkbox" name="checkbox" value="value">Some task</label>-->
-                        <label class="task_tick"><input type="checkbox" value="value-1"><span>{{task['description']}}</span></label>
+                        <label class="task_tick"><input type="checkbox"
+                                                        value="value-1"><span>{{task['description']}}</span></label>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% endif %}
+
+
+                {% for task in tasks%}
+                <div class="todo">
+                    <label class="task_tick"><input type="checkbox" value="value-1"><span>{{task['description']}}</span></label>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </div>
+        <div class="project_info">
+            <div class="project_description">
+                <h3>Обложка проекта</h3>
+                <img src={{img}}>
+                <h3>Описание</h3>
+                <p>{{description}}</p>
+                <h3>Вложения</h3>
+                <div class="project_attachments">
+                    <div class="project_attachment">
+                        <img src="/static/file_types/pdf.png">
+                        <h4>Company finances</h4>
+                    </div>
+                    <div class="project_attachment">
+                        <img src="/static/file_types/psd.png">
+                        <h4>Our logo</h4>
+                    </div>
+                </div>
+                <h3>Коллеги</h3>
+                <div class="list_of_collaborators">
+                    {% for collaborator in collaborators %}
+                    <div class="linar_collaborator">
+                        <img src={{collaborator['img']}}>
+                        <p>{{collaborator['name']}}</p>
                     </div>
                     {% endfor %}
                 </div>
             </div>
-            <div class="project_info">
-                <div class="project_description">
-                    <h3>Project cover</h3>
-                    <img src={{img}}>
-                    <h3>Description</h3>
-                    <p>{{description}}</p>
-                    <h3>Attachments</h3>
-                    <div class="project_attachments">
-                        <div class="project_attachment">
-                            <img src="/static/file_types/pdf.png">
-                            <h4>Company finances</h4>
-                        </div>
-                        <div class="project_attachment">
-                            <img src="/static/file_types/psd.png">
-                            <h4>Our logo</h4>
-                        </div>
-                    </div>
-                    <h3>Collaborators</h3>
-                    <div class="list_of_collaborators">
-                        {% for collaborator in collaborators %}
-                        <div class="linar_collaborator">
-                            <img src={{collaborator['img']}}>
-                            <p>{{collaborator['name']}}</p>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+</div>
 {% endblock %}
 </body>
 </html>

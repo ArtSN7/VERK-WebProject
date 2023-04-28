@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{title}}</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<div class="project_view_content">
+    <h3>{{year_now}} {{months[dates[0][0] - 1]}} {{dates[0][1]}} ꟷ {{dates[-1][2]}} {{months[dates[-1][0] - 1]}}
+        {{dates[-1][1]}}</h3>
+    <div class="large_calendar">
+        <div class="week_header">
+            {% for i in range(weekday, weekday + 7) %}
+            <div class="day">
+                <h4>{{days[i%7]}}</h4>
+            </div>
+            {% endfor %}
+        </div>
+        {% for i in range(6) %}
+        <div class="week">
+            {% for j in range(7) %}
+            <div class="day">
+                <h4><a href="/agenda/{{id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a></h4>
+                <p>
+                <h1>{{len(tasks[i * 7 + j])}}</h1>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+{% block extra_content %}<h1>aaa</h1>{% endblock %}
+</body>
+</html>

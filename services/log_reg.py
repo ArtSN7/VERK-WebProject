@@ -110,3 +110,5 @@ def base(user_id):
     print(LoginManager.user_loader)
     return render_template('base.html', title='Verk | Base', name=user.name, id=user_id, list_of_img=list_of_img,
                            avatar=user.picture)
+
+

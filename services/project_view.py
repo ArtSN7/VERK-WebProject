@@ -62,3 +62,33 @@ def project_view(user_id, project_id):
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=0, curmonth=0, weekday=weekday,
                            year_now=today.year, id=user.id)
+
+
+@blueprint.route('/project_view/<int:user_id>/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
+def project_view_new(user_id, project_id, date_id):
+    db_sess = session.create_session()
+    user = db_sess.query(User).get(user_id)
+    project = db_sess.query(Project).get(project_id)
+    task_list = []
+    collab_list = []
+    tasks, dates = taking_tasks(user_id)
+    today = datetime.datetime.now()
+    weekday = today.weekday()
+    current_day = dates[date_id][1]
+    current_month = dates[date_id][0]
+    days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
+    months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
+              "Декабрь"]
+    for i in project.tasks:
+        task = db_sess.query(Tasks).get(int(i))
+        task_list.append({'description': task.description})
+    for i in project.users.split(', '):
+        collaborator = db_sess.query(User).get(int(i))
+        if int(i) != user_id:
+            collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
+    print(date_id)
+    return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
+                           avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
+                           title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
+                           dates=dates, months=months, len=len, curday=current_day, curmonth=current_month,
+                           weekday=weekday, year_now=today.year, id=user.id, curdate=date_id)
