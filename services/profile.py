@@ -67,7 +67,7 @@ def profile_edit(user_id):
             user.phone = form.phone.data
         if form.birth_date.data != "":
             data = form.birth_date.data.split('.')
-            user.birth_date = datetime.datetime(data[2], data[1], data[0])
+            user.birth_date = datetime.datetime(int(data[2]), int(data[1]), int(data[0]))
         if form.email.data != "":
             user.email = form.email.data
         if form.bio.data != "":
