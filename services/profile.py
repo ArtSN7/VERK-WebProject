@@ -80,7 +80,6 @@ def profile_edit(user_id):
         db_session.commit()
 
         return redirect(f'/projects/{user.id}')
-    print(user.phone)
     return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
                            phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture,
-                           birth_date=str(user.birth_date).split()[0], bio=user.bio)
+                           birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id)
