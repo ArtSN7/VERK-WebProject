@@ -61,4 +61,4 @@ def project_view(user_id, project_id):
                            avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=0, curmonth=0, weekday=weekday,
-                           year_now=today.year)
+                           year_now=today.year, id=user.id)
