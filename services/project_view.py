@@ -15,7 +15,7 @@ from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
 
-blueprint = flask.Blueprint('agenda', __name__, template_folder='templates')
+blueprint = flask.Blueprint('project_view', __name__, template_folder='templates')
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
@@ -25,6 +25,6 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
                    "/static/profile_pics/profile_pic_violet.png"]
 
 
-@blueprint.route('/project_view/<int:user_id>/<int:project_id>')
+@blueprint.route('/project_view/<int:user_id>/<int:project_id>', methods=['GET', 'POST'])
 def project_view(user_id, project_id):
-    pass
+    return render_template('project_view.html', user_id=user_id, project_id=project_id)

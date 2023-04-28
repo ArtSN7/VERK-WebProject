@@ -14,6 +14,7 @@ from wtforms.validators import DataRequired
 from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
+from funcs import load_user
 
 blueprint = flask.Blueprint('adding_project', __name__, template_folder='templates')
 
@@ -25,12 +26,12 @@ def checking_users(users):
     db_session = session.create_session()
     answer = []
 
-    for i in users.split(', '):
+    for i in users.data.split(', '):
         user = db_session.query(User).filter(User.email == i).first()
         if not user.id:
             return []
         else:
-            answer.append(user.id)
+            answer.append(str(user.id))
 
     return answer
 
@@ -44,7 +45,7 @@ class AddingJobForm(FlaskForm):
 
     # img = SelectField('Image', validators=[DataRequired()], choices=[('1', 'cat'), ('2', 'dog'), ('3', 'cow')])
 
-    users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
+    users = StringField("Users' emails separated by commas and spaces", validators=[DataRequired()])
 
     submit = SubmitField('ADD')
 
@@ -58,14 +59,13 @@ def adding_project(user_id):
 
         check = checking_users(form.users)
 
-        if form.img not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        if form.img.data not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
             return render_template('adding_project.html', title='Adding Project', form=form,
                                    message="Wrong image number")
 
         if check == []:
             return render_template('adding_project.html', title='Adding Project', form=form,
                                    message="Some users were not found")
-
         if len(check) == 1:
             answ = check[0]
         else:
@@ -79,7 +79,11 @@ def adding_project(user_id):
         )
         db_session.add(project)
         db_session.commit()
-
+        users = project.users.split(', ')
+        for i in users:
+            user = db_session.query(User).filter(User.id == i).first()
+            new_projects = user.projects.split(', ') + [str(project.id)]
+            user.projects = ', '.join(new_projects)
+            db_session.commit()
         return redirect(f'/projects/{user_id}')
-
     return render_template('adding_project.html', title='Verk | Adding Project', form=form)

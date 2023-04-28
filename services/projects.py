@@ -41,10 +41,10 @@ def projects(user_id):
 
     prj_list = []
 
-    projects = db_session.query(Project).filter(Project.users.like(f"%{str(user_id)},%")).all()
+    projects = db_session.query(Project).filter(Project.users.like(f"%{str(user_id)}%")).all()
 
     for i in projects:
-        prj_list.append({'img': list_of_img[i.img - 1], 'title': i.title})
+        prj_list.append({'img': list_of_img[i.img - 1], 'title': i.title, 'description': i.description, 'id': i.id})
 
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
