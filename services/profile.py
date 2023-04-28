@@ -31,6 +31,8 @@ class EditForm(FlaskForm):
     email = EmailField('Почта')
     name = StringField('Имя')
     phone = StringField('Телефон')
+    birth_date = StringField('Дата рождения')
+    bio = StringField('О себе')
     submit = SubmitField('Edit')
 
 

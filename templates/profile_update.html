@@ -39,8 +39,28 @@
     </p>
     </div>
     <div class="form_item">
-         <label for="name">Ваш телефон: {{phone}} Edit: </label>
+         <label for="phone">Ваш телефон: {{phone}} Edit: </label>
         {{ form.phone(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <div class="form_item">
+         <label for="birth_date">Ваша дата рождения: {{birth_date}} Edit: </label>
+        {{ form.birth_date(class="form-control") }}<br>
+        {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <div class="form_item">
+         <label for="bio">О себе: {{bio}} Edit: </label>
+        {{ form.bio(class="form-control") }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}

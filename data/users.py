@@ -26,6 +26,8 @@ class User(SqlAlchemyBase, UserMixin, SerializerMixin):
 
     birth_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
 
+    bio = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+
     projects = sqlalchemy.Column(sqlalchemy.String, nullable=True, default=None)
 
     tasks = sqlalchemy.Column(sqlalchemy.String, nullable=True, default=None)
