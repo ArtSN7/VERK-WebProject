@@ -47,13 +47,12 @@ def project_view(user_id, project_id):
     tasks, dates = taking_tasks(user_id)
     today = datetime.datetime.now()
     weekday = today.weekday()
-    print(tasks)
-    print(dates)
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
     for i in project.tasks:
-        task_list.append({'description': i.description, 'start_date': i.start_date})
+        task = db_sess.query(Tasks).get(int(i))
+        task_list.append({'description': task.description})
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
