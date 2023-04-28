@@ -31,7 +31,6 @@
         <div class="form_item">
             <p>
             <label for="password">Passcode: </label>
-            {{ form.password.label }}<br>
             {{ form.password(class="form-control", type="password") }}<br>
             {% for error in form.password.errors %}
                 <div class="alert alert-danger" role="alert">
