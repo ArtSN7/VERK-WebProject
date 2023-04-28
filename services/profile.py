@@ -41,7 +41,8 @@ def profile(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
     return render_template('profile.html', title='Verk | Profile', name=user.name, id=user_id, email=user.email,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, phone=user.phone)
+                           list_of_avatars=list_of_avatars, avatar=user.picture, phone=user.phone,
+                           birth_date=str(user.birth_date).split()[0], bio=user.bio)
 
 
 @blueprint.route('/profile_edit/<int:user_id>', methods=['GET', 'POST'])
@@ -76,4 +77,5 @@ def profile_edit(user_id):
         return redirect(f'/projects/{user.id}')
     print(user.phone)
     return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
-                           phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture)
+                           phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture,
+                           birth_date=str(user.birth_date).split()[0], bio=user.bio)
