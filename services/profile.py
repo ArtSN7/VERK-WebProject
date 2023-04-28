@@ -31,7 +31,7 @@ class EditForm(FlaskForm):
     email = EmailField('Почта')
     name = StringField('Имя')
     phone = StringField('Телефон')
-    birth_date = DateTimeField('Дата рождения')
+    birth_date = StringField('Дата рождения')
     bio = StringField('О себе')
     submit = SubmitField('Edit')
 
@@ -66,7 +66,8 @@ def profile_edit(user_id):
         if form.phone.data != "":
             user.phone = form.phone.data
         if form.birth_date.data != "":
-            user.birth_date = form.birth_date.data
+            data = form.birth_date.data.split('.')
+            user.birth_date = datetime.datetime(data[2], data[1], data[0])
         if form.email.data != "":
             user.email = form.email.data
         if form.bio.data != "":
