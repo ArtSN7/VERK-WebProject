@@ -27,4 +27,7 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
 
 @blueprint.route('/project_view/<int:user_id>/<int:project_id>', methods=['GET', 'POST'])
 def project_view(user_id, project_id):
-    return render_template('project_view.html', user_id=user_id, project_id=project_id)
+    db_sess = session.create_session()
+    user = db_sess.query(User).get(user_id)
+    return render_template('project_view.html', user_id=user_id, project_id=project_id,
+                           list_of_avatars=list_of_avatars, avatar=user.picture, name=user.name)
