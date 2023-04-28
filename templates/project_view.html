@@ -37,7 +37,7 @@
                 <div class="week">
                     {% for j in range(7) %}
                     <div class="day">
-                        <h4><a href="/agenda/{{id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a></h4>
+                        <h4><a href="/agenda/{{user_id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a></h4>
                         <p>
                         <h1>{{len(tasks[i * 7 + j])}}</h1></p>
                     </div>
