@@ -51,16 +51,17 @@ def project_view(user_id, project_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
-    for i in project.tasks.split(', '):
-        task = db_sess.query(Tasks).get(int(i))
-        end = str(task.end_date).split()[0]
-        end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
-        print(end_date, today.date(), today.date() + delta_time1)
-        for date_id in range(42):
-            if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
-                task_list[(end_date - today.date()).days].append({'description': task.description})
-            elif today.date() <= end_date < today.date() + delta_time1:
-                task_list[(end_date - today.date()).days] = [{'description': task.description}]
+    if project.tasks:
+        for i in project.tasks.split(', '):
+            task = db_sess.query(Tasks).get(int(i))
+            end = str(task.end_date).split()[0]
+            end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
+            print(end_date, today.date(), today.date() + delta_time1)
+            for date_id in range(42):
+                if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
+                    task_list[(end_date - today.date()).days].append({'description': task.description})
+                elif today.date() <= end_date < today.date() + delta_time1:
+                    task_list[(end_date - today.date()).days] = [{'description': task.description}]
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
@@ -88,15 +89,16 @@ def project_view_new(user_id, project_id, date_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
-    for i in project.tasks.split(', '):
-        task = db_sess.query(Tasks).get(int(i))
-        end = str(task.end_date).split()[0]
-        end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
-        print(end_date, today.date(), today.date() + delta_time1)
-        if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
-            task_list[(end_date - today.date()).days].append({'description': task.description})
-        elif today.date() <= end_date < today.date() + delta_time1:
-            task_list[(end_date - today.date()).days] = [{'description': task.description}]
+    if project.tasks:
+        for i in project.tasks.split(', '):
+            task = db_sess.query(Tasks).get(int(i))
+            end = str(task.end_date).split()[0]
+            end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
+            print(end_date, today.date(), today.date() + delta_time1)
+            if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
+                task_list[(end_date - today.date()).days].append({'description': task.description})
+            elif today.date() <= end_date < today.date() + delta_time1:
+                task_list[(end_date - today.date()).days] = [{'description': task.description}]
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
