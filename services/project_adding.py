@@ -28,7 +28,7 @@ def checking_users(users):
 
     for i in users.data.split(', '):
         user = db_session.query(User).filter(User.email == i).first()
-        if not user.id:
+        if not user:
             return []
         else:
             answer.append(str(user.id))
@@ -75,11 +75,15 @@ def adding_project(user_id):
             img=form.img.data,
             title=form.title.data,
             description=form.description.data,
-            users=answ
+            users=f'{user_id}, ' + answ
         )
         db_session.add(project)
         db_session.commit()
         users = project.users.split(', ')
+        user = db_session.query(User).get(user_id)
+        new_projects = user.projects.split(', ') + [str(project.id)]
+        user.projects = ', '.join(new_projects)
+        db_session.commit()
         for i in users:
             user = db_session.query(User).filter(User.id == i).first()
             new_projects = user.projects.split(', ') + [str(project.id)]
