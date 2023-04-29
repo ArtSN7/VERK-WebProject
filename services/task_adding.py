@@ -26,17 +26,17 @@ def checking_users(users):
     db_session = session.create_session()
     answer = []
 
-    for i in users.split(', '):
+    for i in users.data.split(', '):
         user = db_session.query(User).filter(User.email == i).first()
-        if not user.id:
+        if not user:
             return []
         else:
-            answer.append(user.id)
+            answer.append(str(user.id))
 
     return answer
 
 
-def checking_users_in_pr(check, pr_id):
+def checking_users_in_pr(check):
     db_session = session.create_session()
     pr_users = db_session.query(Project).filter(Project.id == i).first().users
     for i in check:
@@ -51,44 +51,47 @@ class AddingTaskForm(FlaskForm):
 
     # img = SelectField('Image', validators=[DataRequired()], choices=[('1', 'cat'), ('2', 'dog'), ('3', 'cow')])
 
-    users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
+    # users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
 
-    end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d")
+    # end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d")
 
     submit = SubmitField('ADD')
 
 
-@blueprint.route('/adding_task/<int:user_id>', methods=['GET', 'POST'])
-def adding_task(user_id):
+@blueprint.route('/adding_task/<int:user_id>/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
+def adding_task(user_id, project_id, date_id):
     form = AddingTaskForm()
     db_session = session.create_session()
 
     if form.validate_on_submit():
 
-        check = checking_users(form.users)
+        # check = checking_users(form.users)
+        #
+        # if check == []:
+        #     return render_template('adding_project.html', title='Adding Task', form=form,
+        #                            message="Some users were not found")
 
-        if check == []:
-            return render_template('adding_project.html', title='Adding Task', form=form,
-                                   message="Some users were not found")
-
-        if checking_users_in_pr(check):
-            return render_template('adding_project.html', title='Adding Task', form=form,
-                                   message="Some users are not in the project")
-
-        if len(check) == 1:
-            answ = check[0]
-        else:
-            answ = ', '.join(check)
-
+        # if checking_users_in_pr(check):
+        #     return render_template('adding_project.html', title='Adding Task', form=form,
+        #                            message="Some users are not in the project")
+        #
+        # if len(check) == 1:
+        #     answ = check[0]
+        # else:
+        #     answ = ', '.join(check)
+        delta_time1 = datetime.timedelta(days=date_id)
         task = Tasks(
             description=form.description.data,
             start_date=datetime.date.today(),
-            end_date=form.end_date.data,
-            users=answ
+            end_date=datetime.datetime.today().date() + delta_time1
         )
         db_session.add(task)
         db_session.commit()
-
+        project = db_session.query(Project).get(project_id)
+        new_tasks = project.tasks.split(', ') + [str(task.id)]
+        project.tasks = ', '.join(new_tasks)
+        db_session.commit()
+        print(project.tasks)
         return redirect(f'/projects/{user_id}')
 
     return render_template('adding_task.html', title='Adding Task', form=form)

@@ -51,6 +51,7 @@ def project_view(user_id, project_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
+    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
@@ -70,7 +71,7 @@ def project_view(user_id, project_id):
                            avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=0, curmonth=0, weekday=weekday,
-                           year_now=today.year, id=user.id)
+                           year_now=today.year)
 
 
 @blueprint.route('/project_view/<int:user_id>/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
@@ -89,12 +90,12 @@ def project_view_new(user_id, project_id, date_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
+    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
             end = str(task.end_date).split()[0]
             end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
-            print(end_date, today.date(), today.date() + delta_time1)
             if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
                 task_list[(end_date - today.date()).days].append({'description': task.description})
             elif today.date() <= end_date < today.date() + delta_time1:
