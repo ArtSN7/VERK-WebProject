@@ -19,8 +19,8 @@
     </div>
     <div class="form_item">
        <p>
-        <label for="email">Ваш email: {{email}} Edit: </label>
-        {{ form.email(class="form-control", type="email") }}<br>
+        <label for="email">Email edit: </label>
+        {{ form.email(class="form-control", type="email", placeholder=form.email.description) }}<br>
         {% for error in form.email.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -29,8 +29,8 @@
     </p>
     </div>
     <div class="form_item">
-         <label for="name">Ваше имя: {{name}} Edit:</label>
-        {{ form.name(class="form-control") }}<br>
+         <label for="name">Name edit:</label>
+        {{ form.name(class="form-control", placeholder=form.name.description) }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -39,8 +39,9 @@
     </p>
     </div>
     <div class="form_item">
-         <label for="phone">Ваш телефон: {{phone}} Edit: </label>
-        {{ form.phone(class="form-control") }}<br>
+         <label for="phone">Phone edit: </label>
+        {{ form.phone(class="form-control", placeholder=form.phone.description)}}<br>
+
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -49,8 +50,8 @@
     </p>
     </div>
     <div class="form_item">
-         <label for="birth_date">Ваша дата рождения: {{birth_date}} Edit: </label>
-        {{ form.birth_date(class="form-control") }}<br>
+         <label for="birth_date">Birth date edit: </label>
+        {{ form.birth_date(class="form-control",  placeholder=form.birth_date.description) }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
@@ -59,8 +60,8 @@
     </p>
     </div>
     <div class="form_item">
-         <label for="bio">О себе: {{bio}} Edit: </label>
-        {{ form.bio(class="form-control") }}<br>
+         <label for="bio">Biography edit: </label>
+        {{ form.bio(class="form-control", placeholder=form.bio.description) }}<br>
         {% for error in form.name.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}

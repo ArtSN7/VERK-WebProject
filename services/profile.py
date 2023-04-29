@@ -28,11 +28,11 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
 class EditForm(FlaskForm):
     password = PasswordField('Password')
     password_again = PasswordField('Password again')
-    email = EmailField('Почта')
-    name = StringField('Имя')
-    phone = StringField('Телефон')
-    birth_date = StringField('Дата рождения')
-    bio = StringField('О себе')
+    email = EmailField('Почта', description='test')
+    name = StringField('Имя', description='test')
+    phone = StringField('Телефон', description='test')
+    birth_date = StringField('Дата рождения', description='test')
+    bio = StringField('О себе', description='test')
     submit = SubmitField('Edit')
 
 
@@ -50,6 +50,11 @@ def profile_edit(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
     form = EditForm()
+    form.phone.description = user.phone
+    form.name.description = user.name
+    form.birth_date.description = str(user.birth_date).split()[0]
+    form.bio.description = user.bio
+    form.email.description = user.email
     if form.validate_on_submit():
         if form.email.data and db_session.query(User).filter(User.email == form.email.data).first():
             return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
