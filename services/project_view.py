@@ -15,6 +15,7 @@ from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
 from services.agenda import taking_tasks
+import flask_login
 
 blueprint = flask.Blueprint('project_view', __name__, template_folder='templates')
 
@@ -37,11 +38,15 @@ list_of_img = [
         "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"]
 
 
-@blueprint.route('/project_view/<int:user_id>/<int:project_id>', methods=['GET', 'POST'])
-def project_view(user_id, project_id):
+@blueprint.route('/project_view/<int:project_id>', methods=['GET', 'POST'])
+def project_view(project_id):
+    user_id = flask_login.current_user.id
     db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
     project = db_sess.query(Project).get(project_id)
+    user = db_sess.query(User).get(user_id)
+    u = project.users.split(', ')
+    if str(user_id) not in u:
+        return redirect('/profile')
     task_list = {}
     collab_list = []
     tasks, dates = taking_tasks(user_id)
@@ -51,7 +56,6 @@ def project_view(user_id, project_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
-    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
@@ -71,14 +75,21 @@ def project_view(user_id, project_id):
                            avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=0, curmonth=0, weekday=weekday,
-                           year_now=today.year)
+                           year_now=today.year, id=user.id)
 
 
-@blueprint.route('/project_view/<int:user_id>/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
-def project_view_new(user_id, project_id, date_id):
+@blueprint.route('/project_view/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
+@login_required
+def project_view_new(project_id, date_id):
     db_sess = session.create_session()
+    user_id = flask_login.current_user.id
     user = db_sess.query(User).get(user_id)
     project = db_sess.query(Project).get(project_id)
+    u = project.users.split(', ')
+    print(u)
+    print(user_id)
+    if str(user_id) not in u:
+        return redirect('/profile')
     task_list = {}
     collab_list = []
     tasks, dates = taking_tasks(user_id)
@@ -90,12 +101,12 @@ def project_view_new(user_id, project_id, date_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
-    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
             end = str(task.end_date).split()[0]
             end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
+            print(end_date, today.date(), today.date() + delta_time1)
             if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
                 task_list[(end_date - today.date()).days].append({'description': task.description})
             elif today.date() <= end_date < today.date() + delta_time1:

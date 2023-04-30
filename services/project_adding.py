@@ -15,6 +15,7 @@ from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
 from funcs import load_user
+import flask_login
 
 blueprint = flask.Blueprint('adding_project', __name__, template_folder='templates')
 
@@ -27,8 +28,8 @@ def checking_users(users):
     answer = []
 
     for i in users.data.split(', '):
-        user = db_session.query(User).filter(User.email == i).first()
-        if not user:
+        user = db_session.query(User).filter(User.id == i).first()
+        if not user.id:
             return []
         else:
             answer.append(str(user.id))
@@ -50,8 +51,10 @@ class AddingJobForm(FlaskForm):
     submit = SubmitField('ADD')
 
 
-@blueprint.route('/adding_project/<int:user_id>', methods=['GET', 'POST'])
-def adding_project(user_id):
+@blueprint.route('/adding_project', methods=['GET', 'POST'])
+@login_required
+def adding_project():
+    user_id = flask_login.current_user.id
     form = AddingJobForm()
     db_session = session.create_session()
 
@@ -75,19 +78,15 @@ def adding_project(user_id):
             img=form.img.data,
             title=form.title.data,
             description=form.description.data,
-            users=f'{user_id}, ' + answ
+            users=answ
         )
         db_session.add(project)
         db_session.commit()
         users = project.users.split(', ')
-        user = db_session.query(User).get(user_id)
-        new_projects = user.projects.split(', ') + [str(project.id)]
-        user.projects = ', '.join(new_projects)
-        db_session.commit()
         for i in users:
             user = db_session.query(User).filter(User.id == i).first()
             new_projects = user.projects.split(', ') + [str(project.id)]
             user.projects = ', '.join(new_projects)
             db_session.commit()
-        return redirect(f'/projects/{user_id}')
+        return redirect(f'/projects')
     return render_template('adding_project.html', title='Verk | Adding Project', form=form)

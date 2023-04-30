@@ -13,6 +13,7 @@ from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from data.users import User
 from data.projects import Project
+import flask_login
 
 blueprint = flask.Blueprint('projects', __name__, template_folder='templates')
 
@@ -24,8 +25,10 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
                "/static/profile_pics/profile_pic_violet.png"]
 
 
-@blueprint.route(f'/projects/<int:user_id>')
-def projects(user_id):
+@blueprint.route(f'/projects')
+@login_required
+def projects():
+    user_id = flask_login.current_user.id
     # список ссылок на фото
     list_of_img = [
         "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",

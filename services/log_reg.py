@@ -54,7 +54,7 @@ def login():
         if user and user.check_password(pas, form.password.data):
             login_user(user)
 
-            return redirect(f'/projects/{user.id}')
+            return redirect(f'/projects')
 
         return render_template('login.html', message='Wrong login or password', form=form)
 
@@ -86,7 +86,7 @@ def registration():
         db_session.add(user)
         db_session.commit()
 
-        return redirect(f'/projects/{user.id}')
+        return redirect(f'/projects')
 
     return render_template('signup.html', title='Verk | Registration', form=form)
 

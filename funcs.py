@@ -1,5 +1,6 @@
 import data.db_session as session
-from data.users import User
+from data.projects import Project
+from data.tasks import Tasks
 from flask import Flask, redirect, render_template, request
 from flask_login import LoginManager, logout_user, login_required, login_user
 import datetime

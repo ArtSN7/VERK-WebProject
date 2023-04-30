@@ -20,27 +20,28 @@ blueprint = flask.Blueprint('adding_task', __name__, template_folder='templates'
 
 session.global_init("db/blogs.db")
 db_session = session.create_session()
+import flask_login
 
 
 def checking_users(users):
     db_session = session.create_session()
     answer = []
 
-    for i in users.data.split(', '):
-        user = db_session.query(User).filter(User.email == i).first()
-        if not user:
+    for i in users.split(', '):
+        user = db_session.query(User).filter(User.id == i).first()
+        if not user.id:
             return []
         else:
-            answer.append(str(user.id))
+            answer.append(user.id)
 
     return answer
 
 
-def checking_users_in_pr(check):
+def checking_users_in_pr(check, pr_id):
     db_session = session.create_session()
-    pr_users = db_session.query(Project).filter(Project.id == i).first().users
+    pr_users = db_session.query(Project).filter(Project.id == pr_id).first().users
     for i in check:
-        if i not in pr_users:
+        if str(i) not in pr_users:
             return True
 
     return False
@@ -51,47 +52,62 @@ class AddingTaskForm(FlaskForm):
 
     # img = SelectField('Image', validators=[DataRequired()], choices=[('1', 'cat'), ('2', 'dog'), ('3', 'cow')])
 
-    # users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
+    users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
 
-    # end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d")
+    end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d")
 
     submit = SubmitField('ADD')
 
+    project = SelectField("Project", validators=[DataRequired()], choices=[])
 
-@blueprint.route('/adding_task/<int:user_id>/<int:project_id>/<int:date_id>', methods=['GET', 'POST'])
-def adding_task(user_id, project_id, date_id):
-    form = AddingTaskForm()
+
+@blueprint.route('/adding_task', methods=['GET', 'POST'])
+@login_required
+def adding_task():
     db_session = session.create_session()
+    form = AddingTaskForm()
+    user_id = flask_login.current_user.id
+    user = db_session.query(User).get(user_id)
+
+    form.project.choices = db_session.query(User).get(user_id).projects.split(', ')
 
     if form.validate_on_submit():
 
-        # check = checking_users(form.users)
-        #
-        # if check == []:
-        #     return render_template('adding_project.html', title='Adding Task', form=form,
-        #                            message="Some users were not found")
+        check = checking_users(form.users.data)
 
-        # if checking_users_in_pr(check):
-        #     return render_template('adding_project.html', title='Adding Task', form=form,
-        #                            message="Some users are not in the project")
-        #
-        # if len(check) == 1:
-        #     answ = check[0]
-        # else:
-        #     answ = ', '.join(check)
-        delta_time1 = datetime.timedelta(days=date_id)
+        if check == []:
+            return render_template('adding_project.html', title='Adding Task', form=form,
+                                   message="Some users were not found")
+
+        if checking_users_in_pr(check, form.project.data):
+            return render_template('adding_project.html', title='Adding Task', form=form,
+                                   message="Some users are not in the project")
+
+        if len(check) == 1:
+            answ = check[0]
+        else:
+            answ = ', '.join(check)
+
         task = Tasks(
             description=form.description.data,
             start_date=datetime.date.today(),
-            end_date=datetime.datetime.today().date() + delta_time1
+            end_date=form.end_date.data,
+            project=form.project.data,
+            users=answ
         )
         db_session.add(task)
         db_session.commit()
-        project = db_session.query(Project).get(project_id)
-        new_tasks = project.tasks.split(', ') + [str(task.id)]
-        project.tasks = ', '.join(new_tasks)
-        db_session.commit()
-        print(project.tasks)
-        return redirect(f'/projects/{user_id}')
+        for i in form.users.data.split(', '):
+            user = db_session.query(User).get(i)
+            print(task.id)
+            if user.tasks != "":
+                user.tasks = f'{user.tasks}, {task.id}'
+            else:
+                user.tasks = task.id
+            db_session.merge(user)
+            db_session.flush()
+            db_session.commit()
+
+        return redirect(f'/projects')
 
     return render_template('adding_task.html', title='Adding Task', form=form)

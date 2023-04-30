@@ -14,6 +14,7 @@ from wtforms.validators import DataRequired
 from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
+import flask_login
 
 blueprint = flask.Blueprint('agenda', __name__, template_folder='templates')
 
@@ -60,8 +61,10 @@ def taking_tasks(user_id):
             taking_dates()[1])  # задачи и дни
 
 
-@blueprint.route('/agenda/<int:user_id>')
-def agenda(user_id):
+@blueprint.route('/agenda')
+@login_required
+def agenda():
+    user_id = flask_login.current_user.id
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
 
@@ -81,8 +84,10 @@ def agenda(user_id):
                            year_now=today.year)
 
 
-@blueprint.route('/agenda/<int:user_id>/<int:date_id>')
-def new_agenda(user_id, date_id):
+@blueprint.route('/agenda/<int:date_id>')
+@login_required
+def new_agenda(date_id):
+    user_id = flask_login.current_user.id
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
 
