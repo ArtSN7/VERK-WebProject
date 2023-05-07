@@ -78,11 +78,18 @@ def adding_project():
             img=form.img.data,
             title=form.title.data,
             description=form.description.data,
-            users=answ
+            users=str(user_id) + ', ' + answ
         )
         db_session.add(project)
         db_session.commit()
         users = project.users.split(', ')
+        user = db_session.query(User).get(user_id)
+        if user.projects:
+            new_projects = user.projects.split(', ') + [str(project.id)]
+            user.projects = ', '.join(new_projects)
+        else:
+            user.projects = str(project.id)
+        db_session.commit()
         for i in users:
             user = db_session.query(User).filter(User.id == i).first()
             new_projects = user.projects.split(', ') + [str(project.id)]

@@ -32,7 +32,7 @@ def checking_users(users):
         if not user.id:
             return []
         else:
-            answer.append(user.id)
+            answer.append(str(user.id))
 
     return answer
 
@@ -54,16 +54,14 @@ class AddingTaskForm(FlaskForm):
 
     users = StringField("Users' emails separated by commos and spaces", validators=[DataRequired()])
 
-    end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d")
-
     submit = SubmitField('ADD')
 
     project = SelectField("Project", validators=[DataRequired()], choices=[])
 
 
-@blueprint.route('/adding_task', methods=['GET', 'POST'])
+@blueprint.route('/adding_task/<int:date_id>', methods=['GET', 'POST'])
 @login_required
-def adding_task():
+def adding_task(date_id):
     db_session = session.create_session()
     form = AddingTaskForm()
     user_id = flask_login.current_user.id
@@ -88,14 +86,31 @@ def adding_task():
         else:
             answ = ', '.join(check)
 
+        delta_time1 = datetime.timedelta(days=date_id)
         task = Tasks(
             description=form.description.data,
             start_date=datetime.date.today(),
-            end_date=form.end_date.data,
+            end_date=datetime.datetime.today().date() + delta_time1,
             project=form.project.data,
-            users=answ
+            users=str(user_id) + ', ' + answ,
+            status='scheduled'
         )
         db_session.add(task)
+        db_session.commit()
+        user = db_session.query(User).get(user_id)
+        pr = db_session.query(Project).get(int(form.project.data))
+        print(pr)
+        if user.tasks:
+            new_tasks = user.tasks.split(', ') + [str(task.id)]
+            user.tasks = ', '.join(new_tasks)
+        else:
+            user.tasks = str(task.id)
+
+        if pr.tasks:
+            new_tasks = pr.tasks.split(', ') + [str(task.id)]
+            pr.tasks = ', '.join(new_tasks)
+        else:
+            pr.tasks = str(task.id)
         db_session.commit()
         for i in form.users.data.split(', '):
             user = db_session.query(User).get(i)
@@ -108,6 +123,6 @@ def adding_task():
             db_session.flush()
             db_session.commit()
 
-        return redirect(f'/projects')
+        return redirect(f'/project_view/{form.project.data}')
 
     return render_template('adding_task.html', title='Adding Task', form=form)

@@ -37,7 +37,7 @@
                 <div class="week">
                     {% for j in range(7) %}
                     <div class="day">
-                        <h4><a href="/project_view/{{user_id}}/{{project_id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a>
+                        <h4><a href="/project_view/{{project_id}}/{{7 * i + j}}">{{dates[7 * i + j][1]}}</a>
                         </h4>
                         <p>
                         <h1>{{len(tasks[i * 7 + j])}}</h1>
@@ -55,7 +55,7 @@
                 <h2>{{months[curmonth - 1]}} {{curday}}</h2>
                 <h3>Задачи</h3>
                 <div class="control_panel">
-                    <button type="submit" onclick="window.location.href='/adding_task/{{id}}';" value="add_new">Добавить
+                    <button type="submit" onclick="window.location.href='/adding_task/{{curdate}}';" value="add_new">Добавить
                         задачу
                     </button>
                 </div>
@@ -67,7 +67,7 @@
                     {% for task in tasks[curdate] %}
                     <div class="todo">
                         <label class="task_tick"><input type="checkbox"
-                                                        value="value-1"><span>{{task['description']}}</span></label>
+                                                        value="value-1"><span>{{task['description']}}: {{task['status']}}</span></label>
                     </div>
                     {% endfor %}
                     {% endif %}

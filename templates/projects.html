@@ -18,7 +18,7 @@
 <div class="viewport">
     <h1>Проекты</h1>
     <div class="control_panel">
-                <button type="submit" onclick="window.location.href='/adding_project/{{id}}';" value="add_new">Добавить проект</button>
+                <button type="submit" onclick="window.location.href='/adding_project';" value="add_new">Добавить проект</button>
     </div>
     <div class="sheet">
         {% for i in range(len // 4 + 1) %}
@@ -28,7 +28,7 @@
                 <div class="card_cover">
                     <img src={{item["img"]}}>
                 </div>
-                <a onclick="window.location.href='/project_view/{{id}}/{{item['id']}}';">{{item["title"]}}</a>
+                <a onclick="window.location.href='/project_view/{{item['id']}}';">{{item["title"]}}</a>
                 <p>{{item['description']}}</p>
                 <div class="collaborators">
                     <div class="small_user">

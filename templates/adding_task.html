@@ -38,19 +38,10 @@
             </p>
         {% endfor %}
     </p>
-    <p>
-        <label for="end_date">Финальная дата: </label>
-        {{ form.end_date(class="form-control", type="date") }}<br>
-        {% for error in form.end_date.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
         <p>
         <label for="project">Проект: </label>
         {{ form.project(class="form-control", type="date") }}<br>
-        {% for error in form.end_date.errors %}
+        {% for error in form.project.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>

@@ -22,3 +22,5 @@ class Tasks(SqlAlchemyBase, SerializerMixin):
     start_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True, default=datetime.date.today())
     
     end_date = sqlalchemy.Column(sqlalchemy.DateTime, nullable=True)
+
+    status = sqlalchemy.Column(sqlalchemy.String, nullable=True)

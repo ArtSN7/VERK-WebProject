@@ -56,21 +56,28 @@ def project_view(project_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
+    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
             end = str(task.end_date).split()[0]
             end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
-            print(end_date, today.date(), today.date() + delta_time1)
             for date_id in range(42):
                 if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
-                    task_list[(end_date - today.date()).days].append({'description': task.description})
+                    print(task.status)
+                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
                 elif today.date() <= end_date < today.date() + delta_time1:
-                    task_list[(end_date - today.date()).days] = [{'description': task.description}]
+                    task_list[(end_date - today.date()).days] = [{'description': task.description, 'status': task.status}]
+                else:
+                    task.status = 'overdue'
+                    db_sess.commit()
+                    task_list[today.date().day].append(
+                        {'description': task.description, 'status': task.status})
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
             collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
+    print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
                            avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
@@ -101,6 +108,7 @@ def project_view_new(project_id, date_id):
     days = {0: "Понедельник", 1: "Вторник", 2: "Среда", 3: "Четверг", 4: "Пятница", 5: "Суббота", 6: "Воскресенье"}
     months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь",
               "Декабрь"]
+    print(project.tasks)
     if project.tasks:
         for i in project.tasks.split(', '):
             task = db_sess.query(Tasks).get(int(i))
@@ -108,14 +116,14 @@ def project_view_new(project_id, date_id):
             end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
             print(end_date, today.date(), today.date() + delta_time1)
             if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
-                task_list[(end_date - today.date()).days].append({'description': task.description})
+                task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
             elif today.date() <= end_date < today.date() + delta_time1:
-                task_list[(end_date - today.date()).days] = [{'description': task.description}]
+                task_list[(end_date - today.date()).days] = [{'description': task.description, 'status': task.status}]
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
             collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
-    print(task_list, date_id)
+    print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
                            avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
