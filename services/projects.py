@@ -46,13 +46,13 @@ def projects():
     prj_list = []
 
     user = db_session.query(User).get(user_id)
-    pr = user.projects.split()
+    pr = user.projects.split(", ")
     projects = []
-
+    print(pr)
     for i in pr:
         proj = db_session.query(Project).get(i)
         projects.append(proj)
-
+    print(projects)
     for i in projects:
         prj_list.append({'img': list_of_img[i.img - 1], 'title': i.title, 'description': i.description, 'id': i.id})
 
