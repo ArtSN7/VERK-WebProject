@@ -85,6 +85,7 @@ def registration():
         user.password = user.password_hash
         db_session.add(user)
         db_session.commit()
+        login_user(user)
 
         return redirect(f'/projects')
 

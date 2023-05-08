@@ -29,6 +29,7 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
 @login_required
 def projects():
     user_id = flask_login.current_user.id
+    db_session = session.create_session()
     # список ссылок на фото
     list_of_img = [
         "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
@@ -44,7 +45,13 @@ def projects():
 
     prj_list = []
 
-    projects = db_session.query(Project).filter(Project.users.like(f"%{str(user_id)}%")).all()
+    user = db_session.query(User).get(user_id)
+    pr = user.projects.split()
+    projects = []
+
+    for i in pr:
+        proj = db_session.query(Project).get(i)
+        projects.append(proj)
 
     for i in projects:
         prj_list.append({'img': list_of_img[i.img - 1], 'title': i.title, 'description': i.description, 'id': i.id})
