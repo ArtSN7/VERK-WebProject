@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{title}}</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post" class="form">
+    {{ form.hidden_tag() }}
+    <div class="form_header">
+            <h1><b>Verk</b></h1>
+    </div>
+    <div class="form_item">
+            <h4>Project:</h4>
+            <p>{{project}}</p>
+    </div>
+    <div class="form_item">
+       <p>
+        <label for="description">Description edit: </label>
+        {{ form.description(class="form-control", placeholder=form.description.description) }}<br>
+        {% for error in form.description.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <div class="form_item">
+         <label for="users">Users edit:</label>
+        {{ form.users(class="form-control", placeholder=form.users.description) }}<br>
+        {% for error in form.users.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <div class="form_item">
+         <label for="end_date">End date edit: </label>
+        {{ form.end_date(class="form-control", placeholder=form.end_date.description, type="date")}}<br>
+
+        {% for error in form.end_date.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+        <div class="form_item">
+            <h4>Start date:</h4>
+            <p>{{start_date}}</p>
+    </div>
+    <div class="form_item">
+         <label for="status">Status edit: </label>
+        {{ form.status(class="form-control",  placeholder=form.status.description) }}<br>
+        {% for error in form.status.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    {{message}}
+</form>
+{% endblock %}
+</body>
+</html>

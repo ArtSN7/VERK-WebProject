@@ -66,9 +66,10 @@
 
                     {% for task in tasks[curdate] %}
                     <div class="todo">
-                        <label class="task_tick"><input type="checkbox"
-                                                        value="value-1"><span>{{task['description']}}: {{task['status']}}</span></label>
+                        <a href="{{url_for('project_view.task_edit', task_id=task['id'])}}" >{{task['description']}}</a>
+                        <a>: {{task['status']}}</a>
                     </div>
+
                     {% endfor %}
                     {% endif %}
                 </div>

@@ -26,16 +26,24 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
                    "/static/profile_pics/profile_pic_pink.png",
                    "/static/profile_pics/profile_pic_violet.png"]
 list_of_img = [
-        "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-        "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-        "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-        "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-        "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
-        "https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-        "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-        "https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
-        "https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"]
+    "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"]
+
+
+class EditForm(FlaskForm):
+    description = StringField('Description', description='test')
+    users = StringField('Users', description='test')
+    end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d", description='test')
+    status = SelectField('Image', validators=[DataRequired()], choices=[])
+    submit = SubmitField('Edit')
 
 
 @blueprint.route('/project_view/<int:project_id>', methods=['GET', 'POST'])
@@ -65,17 +73,21 @@ def project_view(project_id):
             for date_id in range(42):
                 if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
                     print(task.status)
-                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
+                    task_list[(end_date - today.date()).days].append(
+                        {'description': task.description, 'status': task.status, 'id': f"{task.id}"})
                 elif today.date() <= end_date < today.date() + delta_time1:
-                    task_list[(end_date - today.date()).days] = [{'description': task.description, 'status': task.status}]
+                    task_list[(end_date - today.date()).days] = [
+                        {'description': task.description, 'status': task.status, 'id': f"{task.id}"}]
                 else:
                     task.status = 'overdue'
                     db_sess.commit()
                     try:
-                        task_list[today.date().day].append({'description': task.description, 'status': task.status})
+                        task_list[today.date().day].append(
+                            {'description': task.description, 'status': task.status, 'id': f"{task.id}"})
                     except Exception:
                         task_list[today.date().day] = []
-                        task_list[today.date().day].append({'description': task.description, 'status': task.status})
+                        task_list[today.date().day].append(
+                            {'description': task.description, 'status': task.status, 'id': f"{task.id}"})
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
@@ -120,13 +132,16 @@ def project_view_new(project_id, date_id):
             print(end_date, today.date(), today.date() + delta_time1)
             if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
                 try:
-                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
+                    task_list[(end_date - today.date()).days].append(
+                        {'description': task.description, 'status': task.status, 'id': f"{task.id}"})
                 except Exception:
                     task_list[(end_date - today.date()).days] = []
 
-                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
+                    task_list[(end_date - today.date()).days].append(
+                        {'description': task.description, 'status': task.status, 'id': f"{task.id}"})
             elif today.date() <= end_date < today.date() + delta_time1:
-                task_list[(end_date - today.date()).days] = [{'description': task.description, 'status': task.status}]
+                task_list[(end_date - today.date()).days] = [
+                    {'description': task.description, 'status': task.status, 'id': f"{task.id}"}]
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
@@ -137,3 +152,57 @@ def project_view_new(project_id, date_id):
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=current_day, curmonth=current_month,
                            weekday=weekday, year_now=today.year, id=user.id, curdate=date_id)
+
+
+@blueprint.route('/task_edit/<int:task_id>', methods=['GET', 'POST'])
+@login_required
+def task_edit(task_id):
+    user_id = flask_login.current_user.id
+    db_session = session.create_session()
+    user = db_session.query(User).get(user_id)
+    task = db_session.query(Tasks).get(task_id)
+    start_date = task.start_date
+    project = task.project
+
+    form = EditForm()
+    form.description.description = task.description
+    form.users.description = task.users
+    form.end_date.description = str(task.end_date).split()[0]
+    form.status.description = task.status
+    form.status.choices = ['sheduled', "overdue", "in process", "completed"]
+    if form.validate_on_submit():
+        if form.description.data != "":
+            task.description = form.description.data
+        if form.users.data != "":
+            u = task.users.split(", ")
+            for i in u:
+                us = db_session.query(User).get(i)
+                t = us.tasks.split(", ")
+                t.remove(str(task.id))
+                us.tasks = ', '.join(t)
+                db_session.merge(us)
+                db_session.commit()
+            u = form.users.data.split(", ")
+            for i in u:
+                us = db_session.query(User).get(i)
+                if us.tasks:
+                    t = us.tasks.split(', ') + [str(task.id)]
+                    us.tasks = ', '.join(t)
+                else:
+                    us.tasks = str(task.id)
+                db_session.merge(us)
+                db_session.commit()
+            task.users = form.users.data
+
+        if form.end_date.data != "":
+            task.end_date = form.end_date.data
+        if form.status.data != task.status:
+            task.status = form.status.data
+        db_session.merge(task)
+        db_session.commit()
+
+        return redirect(f'/projects')
+    return render_template('task_edit.html', title='Verk | Profile', name=user.name, email=user.email,
+                           phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture,
+                           birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id, start_date=start_date,
+                           project=project)
