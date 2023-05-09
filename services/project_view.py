@@ -71,8 +71,11 @@ def project_view(project_id):
                 else:
                     task.status = 'overdue'
                     db_sess.commit()
-                    task_list[today.date().day].append(
-                        {'description': task.description, 'status': task.status})
+                    try:
+                        task_list[today.date().day].append({'description': task.description, 'status': task.status})
+                    except Exception:
+                        task_list[today.date().day] = []
+                        task_list[today.date().day].append({'description': task.description, 'status': task.status})
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
@@ -116,7 +119,12 @@ def project_view_new(project_id, date_id):
             end_date = datetime.date(int(end.split('-')[0]), int(end.split('-')[1]), int(end.split('-')[2]))
             print(end_date, today.date(), today.date() + delta_time1)
             if today.date() <= end_date < today.date() + delta_time1 and date_id in task_list:
-                task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
+                try:
+                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
+                except Exception:
+                    task_list[(end_date - today.date()).days] = []
+
+                    task_list[(end_date - today.date()).days].append({'description': task.description, 'status': task.status})
             elif today.date() <= end_date < today.date() + delta_time1:
                 task_list[(end_date - today.date()).days] = [{'description': task.description, 'status': task.status}]
     for i in project.users.split(', '):
