@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
     background-color: #0A1833;
@@ -52,6 +53,10 @@ aside {
     position: fixed;
     background-color: #0A1833;
     height: 100%;
+}
+
+.base_aside {
+    margin-left: 0px;
 }
 
 .account_menu {
@@ -109,6 +114,7 @@ aside .icon img {
 .projects_menu {
     display: None;
 }
+
 .projects_menu {
     background-color: #102040;
     margin: 10px;
@@ -140,14 +146,17 @@ aside .icon img {
 .form {
     display: grid;
     color: #FFF;
-    max-width: 20%;
-    margin-top: 10%;
-    margin-right: 40%;
-    margin-left: 40%;
+    width: 30%;
+    margin: auto;
 }
 
 .form h1 {
     text-align: center;
+}
+
+.form div {
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .form_item {
@@ -160,7 +169,8 @@ aside .icon img {
     background-color: #102040;
     border: None;
     border-radius: 10px;
-    padding: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px; */
     font-family: Nunito;
     font-size: 16px;
     width: 100%;
@@ -172,18 +182,19 @@ aside .icon img {
     margin-bottom: 10px;
 }
 
-.form button {
-    width: 60%;
-    /* min-width: 200px;
-    max-width: 300px; */
-    height: 60px;
-    margin-left: 20%;
-    margin-right: 20%;
-    background-color: #3361FF;
+.form button, .form_button {
+    width: 150px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #102040;
     color: #FFF;
     border: None;
     border-radius: 10px;
-    padding: 10px;
+    padding-left: 15%;
+    padding-right: 15%;
     font-family: Nunito;
     font-size: 16px;
 }
@@ -550,7 +561,7 @@ h3 a {
     margin-bottom: 5px;
 }
 
-.large_calendar .week_header .day h4{
+.large_calendar .week_header .day h4 {
     text-align: center;
     font-size: 12px;
     margin-top: -2px;
@@ -597,14 +608,16 @@ h3 a {
 }
 
 .notification_table {
-    width:100%;
+    width: 100%;
     display: flex;
     grid-template-columns: 30% 40% 30%;
     align-items: center;
 }
+
 .notification_table tr {
     height: 100px;
 }
+
 /*.notification_table td {
     max-width: 33%;
 }*/

@@ -13,65 +13,70 @@
 </head>
 
 <body>
-<form action="" method="post" class="form">
-    {{ form.hidden_tag() }}
-    <div class="form_header">
-            <h1><b>Verk</b></h1>
-    </div>
-    <div class="form_item">
-       <p>
-        <label for="email">Email: </label>
-        {{ form.email(class="form-control", type="email") }}<br>
-        {% for error in form.email.errors %}
+    <form action="" method="post" class="form">
+        {{ form.hidden_tag() }}
+        <h1><b>Verk</b></h1>
+        <div class="email_pole">
+            <label for="email">Email: </label>
+            <p>
+                {{ form.email(class="form-control", type="email") }}<br>
+                {% for error in form.email.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
             </p>
-        {% endfor %}
-    </p>
-    </div>
-    <p>
-        <label for="login">Login: </label>
-        {{ form.login(class="form-control", type="label") }}<br>
-        {% for error in form.login.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
+            {% endfor %}
             </p>
-        {% endfor %}
-    </p>
-    <p>
-        <label for="password">Password: </label>
-        {{ form.password(class="form-control", type="password") }}<br>
-        {% for error in form.password.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    <p>
-        <label for="password">Password-again: </label>
-        {{ form.password_again(class="form-control", type="password") }}<br>
-        {% for error in form.password_again.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    </div>
-    <div class="form_item">
-         <label for="name">Name: </label>
-        {{ form.name(class="form-control") }}<br>
-        {% for error in form.name.errors %}
-            <p class="alert alert-danger" role="alert">
-                {{ error }}
-            </p>
-        {% endfor %}
-    </p>
-    </div>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
-    {{message}}
-        <div class="form_item">
-            <input type="button" value="Login" onClick='location.href="/login"'>
         </div>
-</form>
+        <div class="login_pole">
+            <label for="login">Login: </label>
+            <p>
+                {{ form.login(class="form-control", type="label") }}<br>
+                {% for error in form.login.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+        </div>
+        <div class="password_pole">
+            <label for="password">Password: </label>
+            <p>
+                {{ form.password(class="form-control", type="password") }}<br>
+                {% for error in form.password.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+        </div>
+        <div class="password_pole">
+            <label for="password">Password-again: </label>
+            <p>
+                {{ form.password_again(class="form-control", type="password") }}<br>
+                {% for error in form.password_again.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+        </div>
+        <div class="name_pole">
+            <label for="name">Name: </label>
+            <p>
+                {{ form.name(class="form-control") }}<br>
+                {% for error in form.name.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+            {% endfor %}
+            </p>
+        </div>
+        <!--<p class="form_button">{{ form.submit(type="submit", class="btn btn-primary") }}</p>-->
+        <button onClick='form.submit(type="submit")'>Sign up</button>
+        <!--<input type="button" value="Login" onClick='location.href="/login"'>-->
+        <button onClick='location.href="/login"'>Login</button>
+        {{message}}
+    </form>
 </body>
+
 </html>
