@@ -55,7 +55,8 @@ def profile1(user_id):
         return redirect('/profile')
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
-    return render_template('profile_foreign.html', title='Verk | Profile', name=user.name, id=user_id, email=user.email,
+    us = db_sess.query(User).get(u)
+    return render_template('profile_foreign.html', title='Verk | Profile', name=us.name, naming=user.name, id=user_id, email=user.email,
                            list_of_avatars=list_of_avatars, avatar=user.picture, phone=user.phone,
                            birth_date=str(user.birth_date).split()[0], bio=user.bio)
 

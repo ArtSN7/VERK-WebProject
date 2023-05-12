@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{title}}</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+    </style>
+</head>
+<body>
 {% extends "base.html" %}
 {% block content %}
 <div class="viewport">
@@ -8,7 +20,7 @@
             <div class="name_and_picture">
                 <img src={{list_of_avatars[avatar]}}>
                 <div class="data_info">
-                    <h1>{{name}}</h1>
+                    <h1>{{naming}}</h1>
                 </div>
             </div>
         </div>

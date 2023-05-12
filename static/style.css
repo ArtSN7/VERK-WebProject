@@ -655,27 +655,23 @@ h3 a {
     padding: 10px;
 }
 
-/*.table {
-    border: 1px solid #1F3359;
-    width: 65%;
+table{
+  border: 1px solid white;
+  max-width: 60%;
+  margin-left: 20%;
+
 }
 
-границы ячеек первого ряда таблицы
-.th {
-    margin: 10px;
-    border: 1px solid #1F3359;
+th{
+  border: 1px solid;
+
 }
 
-границы ячеек тела таблицы
-.td {
-    margin: 10px;
-    color: #FFF;
-    border: 1px solid #1F3359;
+td{
+  border: 1px solid white;
+  color: white;
 }
 
-.pic_table img {
-    width: 30px;
-}*/
 
 .sheet .row .card .collaborators .small_user img {
     display: None;

@@ -22,6 +22,22 @@ session.global_init("db/blogs.db")
 db_session = session.create_session()
 import flask_login
 
+list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
+                   "/static/profile_pics/profile_pic_blue.png",
+                   "/static/profile_pics/profile_pic_pink.png",
+                   "/static/profile_pics/profile_pic_violet.png"]
+list_of_img = [
+    "https://images.unsplash.com/photo-1563089145-599997674d42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+    "https://images.unsplash.com/photo-1618472609777-b038f1f04b8d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    "https://images.unsplash.com/photo-1618556658017-fd9c732d1360?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1064&q=80",
+    "https://images.unsplash.com/photo-1633596683562-4a47eb4983c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1629948618343-0d33f97a3091?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1631695161296-fb4daf40d3f9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80",
+    "https://images.unsplash.com/photo-1629729802306-2c196af7eef5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"]
+
 
 def checking_users(users):
     db_session = session.create_session()
@@ -126,3 +142,20 @@ def adding_task(date_id):
         return redirect(f'/project_view/{form.project.data}')
 
     return render_template('adding_task.html', title='Adding Task', form=form)
+
+
+@blueprint.route('/tasks', methods=['GET', 'POST'])
+@login_required
+def all_tasks():
+    t = []
+    db_session = session.create_session()
+    user_id = flask_login.current_user.id
+    user = db_session.query(User).get(user_id)
+    tasks = user.tasks.split(", ")
+    for i in tasks:
+        task = db_session.query(Tasks).get(i)
+        t.append(
+            [task.description, task.project, ".".join(str(task.end_date).split()[0].split("-")[::-1]), task.status, int(task.id)])
+        t.sort(key=lambda row: (row[4]))
+    return render_template('all_tasks.html', title='All Task', tasks=t, list_of_avatars=list_of_avatars,
+                           avatar=user.picture, name=user.name, id=user_id)

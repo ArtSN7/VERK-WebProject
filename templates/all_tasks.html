@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{title}}</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+    </style>
+</head>
+<body>
+{% extends "base.html" %}
+{% block content %}
+<div class="viewport">
+         <div class="form_item">
+             <h1>Tasks</h1>
+             <table class="table">
+                <thead class="thead-light">
+                    <tr style="background-color: #e1e1e1">
+                        <th scope="col">Description</th>
+                        <th scope="col">Project</th>
+                        <th scope="col">End date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                 <tbody>
+                 {% for task in tasks %}
+                 <tr>
+                       <td><a href="{{url_for('project_view.task_edit', task_id=task[4])}}" >{{ task[0] }}</a></td>
+                       <td>{{ task[1] }}</td>
+                       <td>{{ task[2] }}</td>
+                       <td>{{ task[3] }}</td>
+                     </tr>
+                 {% endfor %}
+                 </tbody>
+         </table>
+         </div>
+
+</div>
+{% endblock %}
+</body>
+</html>
