@@ -29,6 +29,7 @@
         {% endfor %}
     </p>
     </div>
+    <div class="form_item">
     <p>
         <label for="description">Описание: </label>
         {{ form.description(class="form-control", type="label") }}<br>
@@ -38,6 +39,8 @@
             </p>
         {% endfor %}
     </p>
+    </div>
+    <div class="form_item">
     <p>
         <label for="img">Номер картинки: </label>
         {{ form.img(class="form-control", type="label") }}<br>
@@ -47,6 +50,8 @@
             </p>
         {% endfor %}
     </p>
+    </div>
+    <div class="form_item">
     <p>
         <label for="users">Пользователи: </label>
         {{ form.users(class="form-control", type="label") }}<br>
@@ -56,7 +61,10 @@
             </p>
         {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    </div>
+    <div class="form_item">
+        <button type="submit" value="Log in">Add project</button>
+    </div>
 	<div>{{ message }}</div>
 </form>
 </body>
