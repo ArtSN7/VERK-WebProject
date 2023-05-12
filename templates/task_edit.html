@@ -44,7 +44,7 @@
     </div>
     <div class="form_item">
          <label for="end_date">End date edit: </label>
-        {{ form.end_date(class="form-control", placeholder=form.end_date.description, type="date")}}<br>
+        {{ form.end_date(class="form-control", placeholder=form.end_date.description)}}<br>
 
         {% for error in form.end_date.errors %}
             <p class="alert alert-danger" role="alert">
@@ -67,7 +67,7 @@
         {% endfor %}
     </p>
     </div>
-    <button type="submit" value="Log in">Add project</button>
+    <button type="submit" value="Log in">Edit task</button>
     {{message}}
 </form>
 {% endblock %}

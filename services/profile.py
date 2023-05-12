@@ -91,8 +91,14 @@ def profile_edit():
         if form.phone.data != "":
             user.phone = form.phone.data
         if form.birth_date.data != "":
-            data = form.birth_date.data.split('.')
-            user.birth_date = datetime.datetime(int(data[2]), int(data[1]), int(data[0]))
+            try:
+                data = form.birth_date.data.split('.')
+                user.birth_date = datetime.datetime(int(data[2]), int(data[1]), int(data[0]))
+            except Exception:
+                return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
+                                       phone=user.phone, form=form, list_of_avatars=list_of_avatars,
+                                       avatar=user.picture,
+                                       birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id, message="Wrong format of date, try dd-mm-yyyy")
         if form.email.data != "":
             user.email = form.email.data
         if form.bio.data != "":

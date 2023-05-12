@@ -41,8 +41,8 @@ list_of_img = [
 class EditForm(FlaskForm):
     description = StringField('Description', description='test')
     users = StringField('Users', description='test')
-    end_date = DateTimeField("End date", validators=[DataRequired()], format="%Y-%m-%d", description='test')
-    status = SelectField('Image', validators=[DataRequired()], choices=[])
+    end_date = StringField("End date", description='test')
+    status = SelectField('Status', choices=[])
     submit = SubmitField('Edit')
 
 
@@ -169,7 +169,8 @@ def task_edit(task_id):
     form = EditForm()
     form.description.description = task.description
     form.users.description = task.users
-    form.end_date.description = str(task.end_date).split()[0]
+    form.end_date.description = ".".join(str(task.end_date).split()[0].split("-")[::-1])
+    print(form.end_date.description)
     form.status.description = task.status
     form.status.choices = ['sheduled', "overdue", "in process", "completed"]
     if form.validate_on_submit():
@@ -197,7 +198,17 @@ def task_edit(task_id):
             task.users = form.users.data
 
         if form.end_date.data != "":
-            task.end_date = form.end_date.data
+            try:
+                data = form.end_date.data.split('.')
+                task.end_date = datetime.datetime(int(data[2]), int(data[1]), int(data[0]))
+            except Exception:
+                return render_template('task_edit.html', title='Verk | Profile', name=user.name, email=user.email,
+                                       phone=user.phone, form=form, list_of_avatars=list_of_avatars,
+                                       avatar=user.picture,
+                                       birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id,
+                                       start_date=start_date,
+                                       project=project, message="Wrong format of date, try dd-mm-yyyy")
+
         if form.status.data != task.status:
             task.status = form.status.data
         db_session.merge(task)
