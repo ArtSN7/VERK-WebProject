@@ -100,7 +100,7 @@
                     {% for collaborator in collaborators %}
                     <div class="linar_collaborator">
                         <img src={{collaborator['img']}}>
-                        <p>{{collaborator['name']}}</p>
+                        <a href="{{url_for('profile.profile1', user_id=collaborator['id'])}}" ><p>{{collaborator['name']}}</p></a>
                     </div>
                     {% endfor %}
                 </div>

@@ -91,7 +91,7 @@ def project_view(project_id):
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
-            collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
+            collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1], 'id': collaborator.id})
     print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
                            avatar=user.picture-1, name=user.name, tasks=task_list, description=project.description,
@@ -145,7 +145,7 @@ def project_view_new(project_id, date_id):
     for i in project.users.split(', '):
         collaborator = db_sess.query(User).get(int(i))
         if int(i) != user_id:
-            collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
+            collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1], 'id': collaborator.id})
     print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
                            avatar=user.picture-1, name=user.name, tasks=task_list, description=project.description,
