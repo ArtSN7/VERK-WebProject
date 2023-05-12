@@ -39,6 +39,7 @@ list_of_img = [
     "https://images.unsplash.com/photo-1642427749670-f20e2e76ed8c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"]
 
 
+
 def checking_users(users):
     db_session = session.create_session()
     answer = []

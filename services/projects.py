@@ -20,9 +20,17 @@ blueprint = flask.Blueprint('projects', __name__, template_folder='templates')
 session.global_init("db/blogs.db")
 db_session = session.create_session()
 list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
-               "/static/profile_pics/profile_pic_blue.png",
-               "/static/profile_pics/profile_pic_pink.png",
-               "/static/profile_pics/profile_pic_violet.png"]
+                   "/static/profile_pics/profile_pic_blue.png",
+                   "/static/profile_pics/profile_pic_pink.png",
+                   "/static/profile_pics/profile_pic_violet.png"]
+
+
+class EditForm(FlaskForm):
+    title = StringField('Title', description='test')
+    users = StringField('Users', description='test')
+    description = StringField("Description", description='test')
+    img = SelectField('Status', choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], description='test')
+    submit = SubmitField('Edit')
 
 
 @blueprint.route(f'/projects')
@@ -65,3 +73,55 @@ def projects():
     return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id,
                            list_of_avatars=list_of_avatars, avatar=user.picture, projects=prj_list,
                            len=len(prj_list))
+
+
+@blueprint.route(f'/project_edit/<int:project_id>', methods=['GET', 'POST'])
+@login_required
+def project_edit(project_id):
+    user_id = flask_login.current_user.id
+    db_session = session.create_session()
+    project = db_session.query(Project).get(project_id)
+    user = db_session.query(User).get(user_id)
+    u = project.users.split(', ')
+    if str(user_id) not in u:
+        return redirect('/projects')
+    form = EditForm()
+    form.description.description = project.description
+    form.img.description = project.img
+    form.users.description = project.users
+    form.title.description = project.description
+    if form.validate_on_submit():
+        if form.users.data != "" and form.users.data != project.users:
+            u = project.users.split(', ')
+            for i in u:
+                us = db_session.query(User).get(int(i))
+                pr = us.projects.split(", ")
+                print(pr)
+                ind = int(pr.index(str(project_id)))
+                print(ind)
+                del pr[ind]
+                pr = ", ".join(pr)
+                us.projects = pr
+                db_session.merge(us)
+                db_session.commit()
+            for i in form.users.data.split(", "):
+                us = db_session.query(User).get(int(i))
+                pr = us.projects.split(", ")
+                pr.append(str(project_id))
+                pr = ", ".join(pr)
+                us.projects = pr
+                db_session.merge(us)
+                db_session.commit()
+            project.users = form.users.data
+        if form.description.data != "":
+            project.description = form.description.data
+        if form.img.data != project.img:
+            project.img = form.img.data
+        if form.title.data != "":
+            project.title = form.img.data
+        db_session.merge(project)
+        db_session.commit()
+        return redirect("/projects")
+
+    return render_template('project_edit.html', title='Verk | Projects', name=user.name, id=user_id,
+                           list_of_avatars=list_of_avatars, avatar=user.picture, idit=project_id, form=form)

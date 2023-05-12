@@ -18,7 +18,7 @@
             {% endfor %}
         </div>
         <div class="control_panel">
-            <button type="submit" value="share">Share</button>
+            <button onClick='location.href="/project_edit/{{project_id}}"'>Edit project</button>
         </div>
     </div>
     <div class="columns">
@@ -84,6 +84,17 @@
                 <img src={{img}}>
                 <h3>Описание</h3>
                 <p>{{description}}</p>
+                <h3>Вложения</h3>
+                <div class="project_attachments">
+                    <div class="project_attachment">
+                        <img src="/static/file_types/pdf.png">
+                        <h4>Company finances</h4>
+                    </div>
+                    <div class="project_attachment">
+                        <img src="/static/file_types/psd.png">
+                        <h4>Our logo</h4>
+                    </div>
+                </div>
                 <h3>Коллеги</h3>
                 <div class="list_of_collaborators">
                     {% for collaborator in collaborators %}
