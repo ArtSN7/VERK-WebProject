@@ -62,11 +62,4 @@ def taking_tasks(user_id):
     return tasks_for_today, tasks_for_tom, tasks_for_other  # возвращает 1 - задачи на сегодня, 2 - на завтра, 3 - на остальные даты
 
 
-@blueprint.route('/tasks')
-@login_required
-def tasks():
-    user_id = flask_login.current_user.id
-    db_sess = session.create_session()
-    user = db_sess.query(User).get(user_id)
-    return render_template('tasks.html', title='Verk | Tasks', name=user.name, id=user_id, list_of_img=list_of_img,
-                           avatar=user.picture)
+

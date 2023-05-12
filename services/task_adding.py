@@ -151,7 +151,10 @@ def all_tasks():
     db_session = session.create_session()
     user_id = flask_login.current_user.id
     user = db_session.query(User).get(user_id)
-    tasks = user.tasks.split(", ")
+    try:
+        tasks = user.tasks.split(", ")
+    except Exception:
+        tasks = []
     for i in tasks:
         task = db_session.query(Tasks).get(i)
         t.append(
