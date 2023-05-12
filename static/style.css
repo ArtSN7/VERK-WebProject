@@ -26,6 +26,7 @@ h4 {
 
 h4 a {
     color: #5C7099;
+    text-decoration: none;
 }
 
 h3 {
@@ -184,13 +185,6 @@ button {
     display: grid;
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-
-.choose_item {
-    background-color: #102040;
-    color: white;
-
 }
 
 .form input {
@@ -364,6 +358,7 @@ h3 a {
     font-family: Nunito;
     font-size: 16px;
     color: #FFF;
+    text-decoration: none;
 }
 
 .project_view_header {
@@ -662,23 +657,27 @@ h3 a {
     padding: 10px;
 }
 
-table{
-  margin-top: 10%;
-  border: 1px solid white;
-  max-width: 60%;
-  margin-left: 20%;
+/*.table {
+    border: 1px solid #1F3359;
+    width: 65%;
 }
 
-th{
-  border: 1px solid;
-
+границы ячеек первого ряда таблицы
+.th {
+    margin: 10px;
+    border: 1px solid #1F3359;
 }
 
-td{
-  border: 1px solid white;
-  color: white;
+границы ячеек тела таблицы
+.td {
+    margin: 10px;
+    color: #FFF;
+    border: 1px solid #1F3359;
 }
 
+.pic_table img {
+    width: 30px;
+}*/
 
 .sheet .row .card .collaborators .small_user img {
     display: None;

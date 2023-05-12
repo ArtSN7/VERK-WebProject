@@ -23,9 +23,12 @@ list_of_avatars = ["/static/profile_pics/profile_pic_peach.png",
                "/static/profile_pics/profile_pic_violet.png"]
 
 
-@blueprint.route('/notifications/<int:user_id>')
-def notifications(user_id):
+@blueprint.route('/notifications')
+@login_required
+def notifications():
+    user_id = current_user.id
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
-    return render_template('notifications.html', title='Verk | Notifications', name=user.name, id=user_id,
+    return render_template('notifications.html', title='Verk | Notifications', name=user.name, user_id=user_id,
                            list_of_avatars=list_of_avatars, avatar=user.picture)
+

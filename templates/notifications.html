@@ -4,40 +4,37 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>{{title}}</title>
-    <link href="/static/style.css" rel="stylesheet" type="text/css" />
+    <title>VERK | Notifications</title>
+    <link href="/static/style.css" rel="stylesheet" type="text/css"/>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
     </style>
 </head>
 
 <body>
-      {% extends "base.html" %}
-    {% block content %}
-  <div class="viewport">
-    <div id="content">
-       <h1>Уведомления</h1>
-      <div class="pic_table">
-      <table>
-          <colgroup>
-             <col span="3" style="background:#102040"><!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
-
-         </colgroup>
-         <tr>
-           <td>8:30 12/03/2023</td>
-           <td><img src="/static/profile_pics/profile_pic_blue.png"> Alice T.</td>
-           <td>Created a new doc</td>
-         </tr>
-         <tr>
-           <td>8:30 12/03/2023</td>
-           <td><img src="/static/profile_pics/profile_pic_pink.png"> Alice T.</td>
-           <td>Created a new doc</td>
-         </tr>
-      </table>
+{% extends "base.html" %}
+{% block content %}
+<div class="viewport">
+    <h1>Notifications</h1>
+    {% for i in range(5) %}
+    <div class="content">
+        <div class="notification_box">
+            <div class="profile_pic">
+                <img src="/static/profile_pics/profile_pic_blue.png">
+            </div>
+            <div class="text">
+                <p><b>James Gouse</b></p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                    voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                    non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+        </div>
     </div>
-    </div>
-    
-  </div>
+    {% endfor %}
+</div>
 {% endblock %}
 </body>
 
