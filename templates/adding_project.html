@@ -41,9 +41,9 @@
     </p>
     </div>
     <div class="form_item">
-    <p>
-        <label for="img">Номер картинки: </label>
-        {{ form.img(class="form-control", type="label") }}<br>
+       <p>
+        <label for="img">Картинка: </label>
+        {{ form.img(class="choose_item", placeholder=form.img.description) }}<br>
         {% for error in form.img.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}

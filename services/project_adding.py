@@ -42,11 +42,11 @@ class AddingJobForm(FlaskForm):
 
     description = StringField('Description', validators=[DataRequired()])
 
-    img = IntegerField('Image - one integer from 1 to 11', validators=[DataRequired()])
+    img = SelectField('img', choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], description='test')
 
     # img = SelectField('Image', validators=[DataRequired()], choices=[('1', 'cat'), ('2', 'dog'), ('3', 'cow')])
 
-    users = StringField("Users' emails separated by commas and spaces", validators=[DataRequired()])
+    users = StringField("Users' швы separated by commas and spaces", validators=[DataRequired()])
 
     submit = SubmitField('ADD')
 
@@ -62,7 +62,7 @@ def adding_project():
 
         check = checking_users(form.users)
 
-        if form.img.data not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]:
+        if int(form.img.data) not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
             return render_template('adding_project.html', title='Adding Project', form=form,
                                    message="Wrong image number")
 
