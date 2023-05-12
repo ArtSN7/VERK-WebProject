@@ -28,4 +28,4 @@ def notifications(user_id):
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
     return render_template('notifications.html', title='Verk | Notifications', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture)
+                           list_of_avatars=list_of_avatars, avatar=user.picture-1)

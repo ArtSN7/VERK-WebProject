@@ -29,7 +29,7 @@ class EditForm(FlaskForm):
     title = StringField('Title', description='test')
     users = StringField('Users', description='test')
     description = StringField("Description", description='test')
-    img = SelectField('Status', choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], description='test')
+    img = SelectField('img', choices=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], description='test')
     submit = SubmitField('Edit')
 
 
@@ -71,7 +71,7 @@ def projects():
     user = db_sess.query(User).get(user_id)
 
     return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, projects=prj_list,
+                           list_of_avatars=list_of_avatars, avatar=user.picture-1, projects=prj_list,
                            len=len(prj_list))
 
 
@@ -124,4 +124,4 @@ def project_edit(project_id):
         return redirect("/projects")
 
     return render_template('project_edit.html', title='Verk | Projects', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, idit=project_id, form=form)
+                           list_of_avatars=list_of_avatars, avatar=user.picture-1, idit=project_id, form=form)

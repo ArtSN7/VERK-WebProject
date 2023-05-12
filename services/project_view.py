@@ -94,7 +94,7 @@ def project_view(project_id):
             collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
     print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
-                           avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
+                           avatar=user.picture-1, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=0, curmonth=0, weekday=weekday,
                            year_now=today.year, id=user.id)
@@ -148,7 +148,7 @@ def project_view_new(project_id, date_id):
             collab_list.append({'name': collaborator.name, 'img': list_of_avatars[collaborator.picture - 1]})
     print(task_list)
     return render_template('project_view.html', user_id=user_id, project_id=project_id, list_of_avatars=list_of_avatars,
-                           avatar=user.picture, name=user.name, tasks=task_list, description=project.description,
+                           avatar=user.picture-1, name=user.name, tasks=task_list, description=project.description,
                            title=project.title, img=list_of_img[project.img - 1], collaborators=collab_list, days=days,
                            dates=dates, months=months, len=len, curday=current_day, curmonth=current_month,
                            weekday=weekday, year_now=today.year, id=user.id, curdate=date_id)
@@ -204,7 +204,7 @@ def task_edit(task_id):
             except Exception:
                 return render_template('task_edit.html', title='Verk | Profile', name=user.name, email=user.email,
                                        phone=user.phone, form=form, list_of_avatars=list_of_avatars,
-                                       avatar=user.picture,
+                                       avatar=user.picture-1,
                                        birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id,
                                        start_date=start_date,
                                        project=project, message="Wrong format of date, try dd-mm-yyyy")

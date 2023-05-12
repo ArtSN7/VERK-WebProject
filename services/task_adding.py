@@ -162,4 +162,4 @@ def all_tasks():
             [task.description, task.project, ".".join(str(task.end_date).split()[0].split("-")[::-1]), task.status, int(task.id)])
         t.sort(key=lambda row: (row[4]))
     return render_template('all_tasks.html', title='All Task', tasks=t, list_of_avatars=list_of_avatars,
-                           avatar=user.picture, name=user.name, id=user_id)
+                           avatar=user.picture-1, name=user.name, id=user_id)

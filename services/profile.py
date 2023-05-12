@@ -33,6 +33,7 @@ class EditForm(FlaskForm):
     phone = StringField('Телефон', description='test')
     birth_date = StringField('Дата рождения', description='test')
     bio = StringField('О себе', description='test')
+    picture = SelectField('Status', choices=[1, 2, 3, 4], description='test')
     submit = SubmitField('Edit')
 
 
@@ -43,7 +44,7 @@ def profile():
     db_sess = session.create_session()
     user = db_sess.query(User).get(user_id)
     return render_template('profile.html', title='Verk | Profile', name=user.name, id=user_id, email=user.email,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, phone=user.phone,
+                           list_of_avatars=list_of_avatars, avatar=user.picture-1, phone=user.phone,
                            birth_date=str(user.birth_date).split()[0], bio=user.bio)
 
 
@@ -57,7 +58,7 @@ def profile1(user_id):
     user = db_sess.query(User).get(user_id)
     us = db_sess.query(User).get(u)
     return render_template('profile_foreign.html', title='Verk | Profile', name=us.name, naming=user.name, id=user_id, email=user.email,
-                           list_of_avatars=list_of_avatars, avatar=user.picture, phone=user.phone,
+                           list_of_avatars=list_of_avatars, avatar=us.picture-1, phone=user.phone, ava=user.picture-1,
                            birth_date=str(user.birth_date).split()[0], bio=user.bio)
 
 
@@ -72,6 +73,7 @@ def profile_edit():
     form.name.description = user.name
     form.birth_date.description = str(user.birth_date).split()[0]
     form.bio.description = user.bio
+    form.picture.description = user.picture
     form.email.description = user.email
     if form.validate_on_submit():
         if form.email.data and db_session.query(User).filter(User.email == form.email.data).first():
@@ -107,11 +109,13 @@ def profile_edit():
         if form.password.data != "":
             user.set_password(form.password.data)
             user.password = user.password_hash
+        if form.picture.data != user.picture:
+            user.picture = form.picture.data
         db_session.merge(user)
         db_session.flush()
         db_session.commit()
 
         return redirect(f'/projects')
     return render_template('profile_update.html', title='Verk | Profile', name=user.name, email=user.email,
-                           phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture,
+                           phone=user.phone, form=form, list_of_avatars=list_of_avatars, avatar=user.picture-1,
                            birth_date=str(user.birth_date).split()[0], bio=user.bio, id=user_id)
