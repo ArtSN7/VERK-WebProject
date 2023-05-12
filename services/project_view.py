@@ -163,7 +163,9 @@ def task_edit(task_id):
     task = db_session.query(Tasks).get(task_id)
     start_date = task.start_date
     project = task.project
-
+    us_pr = user.projects.split(", ")
+    if str(project) not in us_pr:
+        return redirect("/projects")
     form = EditForm()
     form.description.description = task.description
     form.users.description = task.users
