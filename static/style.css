@@ -186,6 +186,13 @@ button {
     margin-bottom: 10px;
 }
 
+
+.choose_item {
+    background-color: #102040;
+    color: white;
+
+}
+
 .form input {
     background-color: #102040;
     border: None;
@@ -656,10 +663,10 @@ h3 a {
 }
 
 table{
+  margin-top: 10%;
   border: 1px solid white;
   max-width: 60%;
   margin-left: 20%;
-
 }
 
 th{

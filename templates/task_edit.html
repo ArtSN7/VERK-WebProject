@@ -59,7 +59,7 @@
     </div>
     <div class="form_item">
          <label for="status">Status edit: </label>
-        {{ form.status(class="form-control",  placeholder=form.status.description) }}<br>
+        {{ form.status(class="choose_item",  placeholder=form.status.description) }}<br>
         {% for error in form.status.errors %}
             <p class="alert alert-danger" role="alert">
                 {{ error }}
