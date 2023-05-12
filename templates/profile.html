@@ -13,31 +13,33 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="viewport">
+         <div class="user_info">
+            <div class="user_wallpaper">
+                <img src="static/favicons/k.jpg">
+            </div>
+            <div class="name_and_picture">
+                <img src={{list_of_avatars[avatar]}}>
+                <div class="data_info">
+                    <h1>{{name}}</h1>
+                </div>
+            </div>
+        </div>
         <div class="profile_info">
-            <h1>Ваш профиль</h1>
-
-            <h4>Имя:</h4>
-            <p>{{name}}</p>
-
-            <h4>Аватар:</h4>
-            <img src={{list_of_avatars[avatar]}}>
-
-            <h4>Дата рождения:</h4>
+            <h4>Date of birth:</h4>
             <p>{{birth_date}}</p>
 
             <h4>Email:</h4>
             <p>{{email}}</p>
 
-            <h4>Номер телефона:</h4>
+            <h4>Phone number:</h4>
             <p>{{phone}}</p>
 
-            <h4>О себе:</h4>
+            <h4>Bio:</h4>
             <p>{{bio}}</p>
-
-            <button type="submit" onclick="window.location.href='/profile_edit/{{id}}';" value="add_new">Редактировать профиль</button>
-            <button type="submit" onclick="window.location.href='/';" value="add_new">Выйти из аккаунта</button>
+            <button type="submit" onclick="window.location.href='/profile_edit';" value="add_new">Edit profile</button>
+            <button type="submit" onclick="window.location.href='/';" value="add_new">Log out</button>
         </div>
-    </div>
+</div>
 {% endblock %}
 </body>
 </html>
