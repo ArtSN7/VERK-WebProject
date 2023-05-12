@@ -92,7 +92,9 @@ def adding_project():
         db_session.commit()
         for i in users:
             user = db_session.query(User).filter(User.id == i).first()
-            new_projects = user.projects.split(', ') + [str(project.id)]
+            new_projects = user.projects.split(', ')
+            if str(project.id) not in new_projects:
+                new_projects.append(str(project.id))
             user.projects = ', '.join(new_projects)
             db_session.commit()
         return redirect(f'/projects')
