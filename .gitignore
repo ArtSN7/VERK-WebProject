@@ -1,5 +1,5 @@
 .idea
 .git
-__pycache__/
-services/__pycache__/
-data/__pycache__/
+__pycache__
+services/__pycache__
+data/__pycache__
