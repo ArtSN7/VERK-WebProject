@@ -91,7 +91,20 @@
         {% endfor %}
     </p>
             </div>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+        <div class="form_item">
+       <p>
+        <label for="picture">picture edit: </label>
+        {{ form.picture(class="choose_item", placeholder=form.picture.description) }}<br>
+        {% for error in form.picture.errors %}
+            <p class="alert alert-danger" role="alert">
+                {{ error }}
+            </p>
+        {% endfor %}
+    </p>
+    </div>
+        <div class="form_item">
+         <button type="submit" value="Edit-project", onClick='form.submit(type="submit")'>Edit profile</button>
+    </div>
     {{message}}
 </form>
 {% endblock %}
