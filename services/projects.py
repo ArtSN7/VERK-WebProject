@@ -46,7 +46,10 @@ def projects():
     prj_list = []
 
     user = db_session.query(User).get(user_id)
-    pr = user.projects.split(", ")
+    try:
+        pr = user.projects.split(", ")
+    except Exception:
+        pr = []
     projects = []
     print(pr)
     for i in pr:
