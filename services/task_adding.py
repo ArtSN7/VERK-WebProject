@@ -94,7 +94,7 @@ def adding_task(date_id):
         check = checking_users(form.users.data)
         if check == "wrong":
             return render_template('adding_task.html', title='Adding Task', form=form,
-                                   message="Error in users< please try again")
+                                   message="Error in users, please try again")
 
         if check == []:
             return render_template('adding_task.html', title='Adding Task', form=form,
