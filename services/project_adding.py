@@ -14,7 +14,7 @@ from wtforms.validators import DataRequired
 from data.users import User
 from data.tasks import Tasks
 from data.projects import Project
-from funcs import load_user
+from server import load_user
 import flask_login
 
 blueprint = flask.Blueprint('adding_project', __name__, template_folder='templates')

@@ -1,4 +1,5 @@
 .idea
+venv
 .git
 __pycache__
 services/__pycache__
