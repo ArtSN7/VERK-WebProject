@@ -71,7 +71,7 @@ def projects():
     user = db_sess.query(User).get(user_id)
 
     return render_template('projects.html', title='Verk | Projects', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture-1, projects=prj_list,
+                           list_of_avatars=list_of_avatars, avatar=user.picture - 1, projects=prj_list,
                            len=len(prj_list))
 
 
@@ -104,14 +104,29 @@ def project_edit(project_id):
                 us.projects = pr
                 db_session.merge(us)
                 db_session.commit()
-            for i in form.users.data.split(", "):
-                us = db_session.query(User).get(int(i))
-                pr = us.projects.split(", ")
-                pr.append(str(project_id))
-                pr = ", ".join(pr)
-                us.projects = pr
-                db_session.merge(us)
-                db_session.commit()
+            try:
+                for i in form.users.data.split(", "):
+                    us = db_session.query(User).get(int(i))
+                    pr = us.projects.split(", ")
+                    pr.append(str(project_id))
+                    pr = ", ".join(pr)
+                    us.projects = pr
+                    db_session.merge(us)
+                    db_session.commit()
+            except Exception:
+                u = project.users.split(', ')
+                for i in u:
+                    us = db_session.query(User).get(int(i))
+                    pr = us.projects.split(", ")
+                    pr.append(project_id)
+                    pr = ", ".join(pr)
+                    us.projects = pr
+                    db_session.merge(us)
+                    db_session.commit()
+                return render_template('project_edit.html', title='Verk | Projects', name=user.name, id=user_id,
+                                       list_of_avatars=list_of_avatars, avatar=user.picture - 1, idit=project_id,
+                                       form=form, message="Error in users, please try again")
+
             project.users = form.users.data
         if form.description.data != "":
             project.description = form.description.data
@@ -124,4 +139,4 @@ def project_edit(project_id):
         return redirect("/projects")
 
     return render_template('project_edit.html', title='Verk | Projects', name=user.name, id=user_id,
-                           list_of_avatars=list_of_avatars, avatar=user.picture-1, idit=project_id, form=form)
+                           list_of_avatars=list_of_avatars, avatar=user.picture - 1, idit=project_id, form=form)

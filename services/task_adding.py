@@ -45,11 +45,14 @@ def checking_users(users):
     answer = []
 
     for i in users.split(', '):
-        user = db_session.query(User).filter(User.id == i).first()
-        if not user.id:
-            return []
-        else:
-            answer.append(str(user.id))
+        try:
+            user = db_session.query(User).filter(User.id == i).first()
+            if not user.id:
+               return []
+            else:
+                answer.append(str(user.id))
+        except Exception:
+            return "wrong"
 
     return answer
 
@@ -89,15 +92,17 @@ def adding_task(date_id):
     if form.validate_on_submit():
 
         check = checking_users(form.users.data)
+        if check == "wrong":
+            return render_template('adding_task.html', title='Adding Task', form=form,
+                                   message="Error in users< please try again")
 
         if check == []:
-            return render_template('adding_project.html', title='Adding Task', form=form,
+            return render_template('adding_task.html', title='Adding Task', form=form,
                                    message="Some users were not found")
 
         if checking_users_in_pr(check, form.project.data):
-            return render_template('adding_project.html', title='Adding Task', form=form,
+            return render_template('adding_task.html', title='Adding Task', form=form,
                                    message="Some users are not in the project")
-
         if len(check) == 1:
             answ = check[0]
         else:

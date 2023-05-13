@@ -29,10 +29,13 @@ def checking_users(users):
 
     for i in users.data.split(', '):
         user = db_session.query(User).filter(User.id == i).first()
-        if not user.id:
-            return []
-        else:
-            answer.append(str(user.id))
+        try:
+            if not user.id:
+                return []
+            else:
+                answer.append(str(user.id))
+        except Exception:
+            return "wrong"
 
     return answer
 
@@ -65,14 +68,22 @@ def adding_project():
         if int(form.img.data) not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
             return render_template('adding_project.html', title='Adding Project', form=form,
                                    message="Wrong image number")
-
-        if check == []:
-            return render_template('adding_project.html', title='Adding Project', form=form,
+        try:
+            if check == []:
+                return render_template('adding_project.html', title='Adding Project', form=form,
                                    message="Some users were not found")
-        if len(check) == 1:
-            answ = check[0]
-        else:
-            answ = ', '.join(check)
+            if len(check) == 1:
+                answ = check[0]
+            else:
+                answ = ', '.join(check)
+
+        except Exception:
+            return render_template('adding_project.html', title='Adding Project', form=form,
+                                   message="Error in users, please try again")
+        if answ == "w, r, o, n, g":
+            return render_template('adding_project.html', title='Adding Project', form=form,
+                                   message="Error in users, please try again")
+
 
         project = Project(
             img=form.img.data,
